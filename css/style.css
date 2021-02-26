@@ -1,0 +1,44 @@
+html {
+    background-color:  black;
+    color: white;
+}
+
+#esquerda, #meio, #direita{
+    display: flex;
+    flex-direction: row;
+}
+
+.login {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    height: 40px;
+    width: 40px;
+    background-color: yellow;
+}
+
+#clicar {
+    text-align: center;
+}
+
+p { 
+    font-size: 12px;
+    left: 10px;
+    top: 35px;
+}
+
+#buraconegro {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 10px solid orange;
+    background-color: rgb(0, 0, 0);
+}
+
+.comprar {
+    height: 20px;
+    width: 40px;
+    border-radius: 10%;
+    border: 1px solid;
+    background-color: yellow;
+}
