@@ -93,3 +93,23 @@ class Estrela extends Sprite{
     morrer(){
     }
 }
+
+
+
+let canvas = document.querySelector('#clicker')
+let ctx = canvas.getContext('#2d')
+
+function desenhaCanvas(){
+    ctx.clearRect(0,0,400,700)
+}
+
+function sugando(){
+}
+
+function sugado(){
+}
+
+function ojogo(){
+}
+
+setInterval(ojogo,33)
