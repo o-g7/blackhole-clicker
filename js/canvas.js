@@ -98,6 +98,8 @@ class Estrela extends Sprite{
 
 let canvas = document.querySelector('#clicker')
 let ctx = canvas.getContext('#2d')
+let buracoNegroImg = new Image()
+buracoNegroImg.src = "imgs/buracoNegor.png"
 
 function desenhaCanvas(){
     ctx.clearRect(0,0,400,700)
