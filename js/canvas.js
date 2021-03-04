@@ -1,10 +1,35 @@
-const LARGURA_CANVAS = 400
-const ALTURA_CANVAS = 600
+const ARESTA_CANVAS = 500
+
+class Vetor {
+	constructor(vetorX, vetorY) {
+  	this.x = vetorX;
+    this.y = vetorY;
+  }
+  
+  multiplica(valor) {
+  	return new Vetor(this.x * valor, this.y * valor)
+  }
+  
+  soma(outroVetor) {
+  	return new Vetor(this.x + outroVetor.x, this.y + outroVetor.y)
+  }
+  
+  subtrai(outroVetor) {
+  	return this.soma(outroVetor.multiplica(-1))
+  }
+  
+  tamanho() {
+  	return Math.sqrt(this.x ** 2 + this.y ** 2)
+  }
+  
+  diminuiVetor() {
+  	return this.multiplica(1/this.tamanho())
+  }
+}
 
 class Sprite {
-    constructor(x, y, largura, altura, imagem,velocidade,angulo=0) {
-        this.x = x
-        this.y = y
+    constructor(posicao, largura, altura, imagem,velocidade,angulo=0) {
+        this.posicao = posicao
         this.largura = largura
         this.altura = altura
         this.imagem = imagem
@@ -15,7 +40,7 @@ class Sprite {
     desenhando(ctx) {
         if (this.imagem) {
             ctx.save()
-            ctx.translate(this.x,this.y)
+            ctx.translate(this.posicao.x,this.posicao.y)
             ctx.rotate(this.radiano)
             ctx.drawImage(this.imagem, this.largura/2, this.altura/2, this.largura, this.altura)
             ctx.restore()
@@ -28,19 +53,8 @@ class Sprite {
 
     get centro(){
         return {
-            x: this.x + this.largura / 2,
-            y: this.y + this.altura / 2
-        }
-    }
-
-    atualizaSprite() {
-        this.angulo += this.velocidade
-        if(this.angulo>=360){
-            this.angulo=1
-        }
-        this.y += this.velocidade
-        if(this.y>ALTURA_CANVAS){
-            this.y = 0
+            x: this.posicao.x + this.largura / 2,
+            y: this.posicao.y + this.altura / 2
         }
     }
 
@@ -56,98 +70,72 @@ class Sprite {
 }
 
 class BuracoNegro extends Sprite{
-    constructor(){
-        super(x,y,largura,altura,imagemDoCorpo,velocidadeDoCorpo,angulo)
+    constructor(posicao,largura,altura,imagem,massa){
+        super(posicao,largura,altura,imagem)
+        this.massa = massa
     }
-    atualizaSprite(){  
+
+    atualizaMassa(novaMassa){
+        this.massa = novaMassa
+    }
+}
+
+class CorpoCeleste extends Sprite{
+    constructor(posicao,largura,altura,imagem,velocidade,angulo,buracoNegroEl){
+        super(posicao,largura,altura,imagem,velocidade,angulo)
+        this.buracoNegro = buracoNegroEl
+    }
+
+    atualizaCorposCelestes() {
         this.angulo += this.velocidade
         if(this.angulo>=360){
             this.angulo=1
         }
+        this.posicao = this.posicao.soma(this.velocidade)
+
+        let forcaGravitacional = this.buracoNegro.posicao.subtrai(this.posicao).diminuiVetor().mutiplica(this.buracoNegro.massa)
+        
+        this.velocidade = this.velocidade.soma(forcaGravitacional)
+        
     }
 }
-
-class Meteoro extends Sprite{
-    constructor(){
-        super(x,y,largura,altura,imagemDoCorpo,velocidadeDoCorpo,angulo)
-    }
-
-    atualizaSprite(){   
-    }
-
-    morrer(){
-    }
-}
-
-class Lua extends Sprite{
-    constructor(){
-        super(x,y,largura,altura,imagemDoCorpo,velocidadeDoCorpo,angulo)
-    }
-
-    atualizaSprite(){   
-    }
-
-    morrer(){
-    }
-}
-
-class Planetinha extends Sprite{
-    constructor(){
-        super(x,y,largura,altura,imagemDoCorpo,velocidadeDoCorpo,angulo)
-    }
-
-    atualizaSprite(){   
-    }
-
-    morrer(){
-    }
-}
-
-class Planeta extends Sprite{
-    constructor(){
-        super(x,y,largura,altura,imagemDoCorpo,velocidadeDoCorpo,angulo)
-    }
-
-    atualizaSprite(){   
-    }
-
-    morrer(){
-    }
-}
-
-class Estrela extends Sprite{
-    constructor(){
-        super(x,y,largura,altura,imagemDoCorpo,velocidadeDoCorpo,angulo)
-    }
-
-    atualizaSprite(){   
-    }
-
-    morrer(){
-    }
-}
-
 
 
 let canvas = document.querySelector('#clicker')
-let ctx = canvas.getContext('#2d')
+let ctx = canvas.getContext('2d')
+let massaAtual = 10
+let pontoDeSuccao = new Vetor((ARESTA_CANVAS - massaAtual)/4,(ARESTA_CANVAS - massaAtual)/4)
+let buracoNegroImg = new Image
+buracoNegroImg.src = "imgs/blackhole-128.png"
+const buracoNegroEl = new BuracoNegro(pontoDeSuccao,128,128,buracoNegroImg,massaAtual)
+let corposCelestes = []
+let imagemTeste = new Image
+imagemTeste.src = "imgs/blackhole-32.png"
+corposCelestes.push(new CorpoCeleste(new Vetor(-30,-30),32,32,imagemTeste,new Vetor(2,2),0.2,buracoNegroEl))
 
-let buracoNegroImg = new Image()
-buracoNegroImg.src = "imgs/blackhole-32.png"
-let buracoNegro = new Sprite(150,200,100,100,buracoNegroImg,5)
+buracoNegroImg.addEventListener('load',()=>{
+    desenhaCanvas()
+})
 
 function desenhaCanvas(){
-    ctx.clearRect(0,0,400,600)
-    buracoNegro.desenhando(ctx)
+    ctx.clearRect(0,0,ARESTA_CANVAS,ARESTA_CANVAS)
+    buracoNegroEl.desenhando(ctx)
+    for (let corpo of corposCelestes) {
+        corpo.desenhando(ctx)
+    }
 }
 
-function sugando(){
-}
-
-function sugado(){
+function atualizaJogo(){
+    for (let corpo of corposCelestes) {
+        corpo.atualizaCorposCelestes()
+    }
 }
 
 function ojogo(){
+    desenhaCanvas()
+    atualizaJogo()
 }
 
-setInterval(ojogo,33)
+setInterval(()=>{
+    ojogo()
+},33)
