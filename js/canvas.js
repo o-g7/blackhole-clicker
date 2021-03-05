@@ -1,31 +1,7 @@
-const ARESTA_CANVAS = 500
+import {corposCelestes} from "./estadoDoJogo.js"
+import Vetor from "./vetor.js"
 
-class Vetor {
-	constructor(vetorX, vetorY) {
-  	this.x = vetorX;
-    this.y = vetorY;
-  }
-  
-  multiplica(valor) {
-  	return new Vetor(this.x * valor, this.y * valor)
-  }
-  
-  soma(outroVetor) {
-  	return new Vetor(this.x + outroVetor.x, this.y + outroVetor.y)
-  }
-  
-  subtrai(outroVetor) {
-  	return this.soma(outroVetor.multiplica(-1))
-  }
-  
-  tamanho() {
-  	return Math.sqrt(this.x ** 2 + this.y ** 2)
-  }
-  
-  diminuiVetor() {
-  	return this.multiplica(1/this.tamanho())
-  }
-}
+const ARESTA_CANVAS = 500
 
 class Sprite {
     constructor(posicao, largura, altura, imagem,velocidade,angulo=0) {
@@ -70,20 +46,16 @@ class Sprite {
 }
 
 class BuracoNegro extends Sprite{
-    constructor(posicao,largura,altura,imagem,massa){
+    constructor(posicao,largura,altura,imagem,massa=1){
         super(posicao,largura,altura,imagem)
         this.massa = massa
-    }
-
-    atualizaMassa(novaMassa){
-        this.massa = novaMassa
     }
 }
 
 class CorpoCeleste extends Sprite{
-    constructor(posicao,largura,altura,imagem,velocidade,angulo,buracoNegroEl){
+    constructor(posicao,largura,altura,imagem,velocidade,angulo,buracoNegro){
         super(posicao,largura,altura,imagem,velocidade,angulo)
-        this.buracoNegro = buracoNegroEl
+        this.buracoNegro = buracoNegro
     }
 
     atualizaCorposCelestes() {
@@ -93,8 +65,10 @@ class CorpoCeleste extends Sprite{
         }
         this.posicao = this.posicao.soma(this.velocidade)
 
-        let forcaGravitacional = this.buracoNegro.posicao.subtrai(this.posicao).diminuiVetor().mutiplica(this.buracoNegro.massa)
+    
+        let forcaGravitacional = new Vetor(this.buracoNegro.centro.x,this.buracoNegro.centro.y).subtrai(this.posicao).unitario().multiplica(this.buracoNegro.massa)
         
+
         this.velocidade = this.velocidade.soma(forcaGravitacional)
         
     }
@@ -103,15 +77,14 @@ class CorpoCeleste extends Sprite{
 
 let canvas = document.querySelector('#clicker')
 let ctx = canvas.getContext('2d')
-let massaAtual = 10
+let massaAtual = 1
 let pontoDeSuccao = new Vetor((ARESTA_CANVAS - massaAtual)/4,(ARESTA_CANVAS - massaAtual)/4)
 let buracoNegroImg = new Image
 buracoNegroImg.src = "imgs/blackhole-128.png"
 const buracoNegroEl = new BuracoNegro(pontoDeSuccao,128,128,buracoNegroImg,massaAtual)
-let corposCelestes = []
 let imagemTeste = new Image
 imagemTeste.src = "imgs/blackhole-32.png"
-corposCelestes.push(new CorpoCeleste(new Vetor(-30,-30),32,32,imagemTeste,new Vetor(2,2),0.2,buracoNegroEl))
+corposCelestes.push(new CorpoCeleste(new Vetor(-30,-30),32,32,imagemTeste,new Vetor(10,0),0.2,buracoNegroEl))
 
 buracoNegroImg.addEventListener('load',()=>{
     desenhaCanvas()
