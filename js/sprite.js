@@ -15,6 +15,7 @@ export class Sprite {
         }
     }
 
+    
     get centro(){
         return {
             x: this.posicao.x + this.largura / 2,

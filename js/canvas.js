@@ -14,7 +14,7 @@ buracoNegroImg.src = "imgs/blackhole-128.png"
 const buracoNegroEl = new BuracoNegro(pontoDeSuccao,128,128,buracoNegroImg,massaAtual)
 let imagemTeste = new Image
 imagemTeste.src = "imgs/blackhole-32.png"
-corposCelestes.push(new CorpoCeleste(new Vetor(-30,-30),32,32,imagemTeste,new Vetor(1,0),buracoNegroEl))
+corposCelestes.push(new CorpoCeleste(new Vetor(-30,-30),32,32,imagemTeste,new Vetor(0,5),buracoNegroEl))
 
 buracoNegroImg.addEventListener('load',()=>{
     desenhaCanvas()
@@ -38,7 +38,7 @@ function engoleCorpos(){
     for (let corpo of corposCelestes) {
         const atingiuBuracoNegro = corpo.horizonteEventos(buracoNegroEl)
         if (atingiuBuracoNegro) {
-            corpo.morrer(new Vetor(-30,-30),new Vetor(1,0)) 
+            corpo.morrer(new Vetor(-30,-30),new Vetor(0,10)) 
        }
     }
 }
