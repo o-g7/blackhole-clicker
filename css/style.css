@@ -3,7 +3,39 @@ html {
     color: white;
 }
 
-#esquerda, #meio, #direita{
+body {
+    margin: 0;
+    height: 100%;
+    background-color: black;
+    
+    /* Composição de cada Estrela (cor, raios de luz) */
+    background-image:
+        radial-gradient(rgb(255, 200, 200), rgba(255,255,255,.1) 2px, transparent 30px),
+        radial-gradient(rgb(255, 255, 230), rgba(255,255,255,.1) 1px, transparent 20px),
+        radial-gradient(rgb(200, 200, 255), rgba(255,255,255,.1) 2px, transparent 30px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 20px);
+
+    /* Tamanho e Área de ocupação dos 4 tipos de Estrela */
+    background-size: 550px 650px, 350px 350px, 250px 270px, 220px 220px;
+
+    /* Implementanto a Animação */
+    animation: orbita 10s linear infinite;
+}
+
+/* Animação de Orbita pelo Buraco Negro */
+@keyframes orbita {
+    /* Posição X e Y de origem e destino das Estrelas */
+    from {
+        background-position: 0 0, 30px 60px, 130px 270px, 70px 150px;
+    }
+    
+    to {
+        background-position: -550px 0, -320px 60px, -120px 270px, -150px 150px;
+        
+    }
+}
+
+#esquerda, #direita{
     position: absolute;
 }
 
@@ -11,7 +43,12 @@ html {
     top: 0px;
     left: 0px;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+}
+
+canvas {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #meio {
@@ -28,7 +65,6 @@ html {
     top: 0px;
     right: 0px;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
     width: 300px;
 }
@@ -74,18 +110,4 @@ p {
 h1{
     font-size: 30px;
     text-align: center;
-}
-
-#buraconegro {
-    height: 100px;
-    width: 100px;
-    border-radius: 100%;
-    border: 10px solid orange;
-    background-color: rgb(0, 0, 0);
-}
-
-canvas{
-    margin-left: auto;
-    margin-right: auto;
-    display:block
 }
