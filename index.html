@@ -9,53 +9,51 @@
     <div id="esquerda">
         <h1 style="font-size: 30px">Loja</h1>
         
-        <button class="comprar">
+        <button id="meteoro" class="comprar">
           <div id="circulo"></div>
-          <div id="meteoro">Meteoros: 0</div>
-          <div id="Valor">Valor: 10</div>
+          <p>Poder do Meteoro: 0</p>
+          <p id="Valor">Valor: 10</p>
         </button>
         
         
-        <button class="comprar">
-          <div id="circulo"><img src="imgs/blackhole-32.png"></div>
-          <div id="condensador">Condensador de Antimatéria: 0</div>
-          <div id="Valor4">Valor: 75</div>
-        </button>
-        
-
-        <button class="comprar">
+        <button id="condensador" class="comprar">
           <div id="circulo"></div>
-          <div id="luas">Luas: 0</div>
-          <div id="Valor2">Valor: 100</div>
+          <p>Condensador de Antimatéria: 0</p>
+          <p id="Valor4">Valor: 250</p>
         </button>
         
 
-        <button class="comprar">
+        <button id="luas" class="comprar">
           <div id="circulo"></div>
-          <div id="anao">Planetas Anões: 0</div>
-          <div id="Valor3">Valor: 1000</div>
+          <p>Luas: 0</p>
+          <p id="Valor2">Valor: 100</p>
         </button>
         
 
-        <button class="comprar">
+        <button id="anao" class="comprar">
           <div id="circulo"></div>
-          <div id="planeta">Planetas: 0</div>
-          <div id="Valor5">Valor: 5000</div>
+          <p>Planetas Anões: 0</p>
+          <p id="Valor3">Valor: 1000</p>
         </button>
         
 
-        <button class="comprar">
+        <button id="planeta" class="comprar">
           <div id="circulo"></div>
-          <div id="estrela">Estrelas: 0</div>
-          <div id="Valor6">Valor: 10000</div>
+          <p>Planetas: 0</p>
+          <p id="Valor5">Valor: 5000</p>
+        </button>
+        
+
+        <button id="estrela" class="comprar">
+          <div id="circulo"></div>
+          <p>Estrelas: 0</p>
+          <p id="Valor6">Valor: 10000</p>
         </button>
         
     </div>
     <canvas id="clicker" width="800" height="800"></canvas>
     <div id="direita">
-      <button id="click">
-        <p>Cuidado!</p>
-      </button>
+        <p id="massa">0 unidade de massa</p>
         <div class="login"><img src="imgs/profile-white.png"></div>
     </div>
     <script type="module" src="js/main.js"></script>

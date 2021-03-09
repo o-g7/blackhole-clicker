@@ -2,3 +2,37 @@ import {corposCelestes} from "./estadoDoJogo.js"
 import Vetor from "./vetor.js"
 import {CorpoCeleste} from "./sprite.js"
 import {estadoDoJogo} from "./estadoDoJogo.js"
+import {preco} from "./estadoDoJogo.js"
+import {imagens} from "./estadoDoJogo.js"
+import {aumentarUnidadeMassa} from "./estadoDoJogo.js"
+import {niveis} from "./estadoDoJogo.js"
+import {buracoNegroEl} from "./canvas.js"
+import {ALTURA_CANVAS} from "./canvas.js"
+import {LARGURA_CANVAS} from "./canvas.js"
+
+let botaoMeteoroEl = document.querySelector('#meteoro')
+botaoMeteoroEl.addEventListener('click',() => {
+    if(estadoDoJogo.click>=preco.meteoro){
+        if(preco.meteoro===10){
+            imagens.meteoro.src = "imgs/blackhole-32.png"
+            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),32,32,imagens.meteoro,new Vetor(0,4),buracoNegroEl))
+        }
+        estadoDoJogo.click =estadoDoJogo.click - preco.meteoro
+        preco.meteoro = preco.meteoro*2
+        niveis.meteoro += 1
+        aumentarUnidadeMassa()
+    }
+    botaoMeteoroEl.innerHTML = `<div id="circulo"></div><p>Poder do Meteoro: ${niveis.meteoro}</p><p id="Valor">Valor: ${preco.meteoro}</p>`
+})
+
+let botaoCondensadorEl = document.querySelector('#condensador')
+botaoCondensadorEl.addEventListener('click',() => {
+    if(estadoDoJogo.click>=preco.antiMateria){
+        niveis.antiMateria += 1
+        estadoDoJogo.valorClick = niveis.antiMateria * 2
+        estadoDoJogo.click =estadoDoJogo.click - preco.antiMateria
+        preco.antiMateria = preco.antiMateria * 2
+        aumentarUnidadeMassa()
+    }
+    botaoCondensadorEl.innerHTML = `<div id="circulo"></div><p>Condensador de Antimatéria: ${niveis.antiMateria}</p><p id="Valor">Valor: ${preco.antiMateria}</p>`
+})
