@@ -4,7 +4,7 @@ import {BuracoNegro} from "./sprite.js"
 import {CorpoCeleste} from "./sprite.js"
 import {estadoDoJogo} from "./estadoDoJogo.js"
 import {preco} from "./estadoDoJogo.js"
-import {aumentarUnidadeMassa} from "./estadoDoJogo.js"
+import {mudaClick} from "./estadoDoJogo.js"
 import {imagens} from "./estadoDoJogo.js"
 
 let canvas = document.querySelector('#clicker')
@@ -12,11 +12,10 @@ export const ALTURA_CANVAS = canvas.height = window.innerHeight
 export const LARGURA_CANVAS = canvas.width = window.innerWidth
 
 let ctx = canvas.getContext('2d')
-let massaAtual = 1 + estadoDoJogo.aumentoMassa
-let pontoDeSuccao = new Vetor((LARGURA_CANVAS - massaAtual)/2.1,(ALTURA_CANVAS - massaAtual)/2.8)
+let pontoDeSuccao = new Vetor((LARGURA_CANVAS - estadoDoJogo.aumentoMassa)/2.1,(ALTURA_CANVAS - estadoDoJogo.aumentoMassa)/2.8)
 let buracoNegroImg = new Image
 buracoNegroImg.src = "imgs/blackhole-128.png"
-export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127+massaAtual,127+massaAtual,buracoNegroImg,massaAtual)
+export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127+estadoDoJogo.aumentoMassa,127+estadoDoJogo.aumentoMassa,buracoNegroImg,estadoDoJogo.aumentoMassa)
 
 
 buracoNegroImg.addEventListener('load',()=>{
@@ -26,10 +25,10 @@ buracoNegroImg.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click+= 100000
+            estadoDoJogo.click+= 100
         }
     }
-    aumentarUnidadeMassa()
+    mudaClick()
 })
 
 function desenhaCanvas(){
@@ -41,6 +40,7 @@ function desenhaCanvas(){
 }
 
 function atualizaJogo(){
+    buracoNegroEl.atualizandoMassa(estadoDoJogo.aumentoMassa)
     for (let corpo of corposCelestes) {
         corpo.atualizaCorposCelestes()
     }
@@ -51,14 +51,14 @@ function engoleCorpos(){
         const atingiuBuracoNegro = corpo.horizonteEventos(buracoNegroEl)
         if (atingiuBuracoNegro) {
             if(corpo.imagem === imagens.meteoro){
-                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(0,4)) 
+                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(1,4)) 
                 estadoDoJogo.click += preco.meteoro/2
-                aumentarUnidadeMassa()
+                mudaClick()
             }
             if(corpo.imagem === imagens.lua){
-                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.9,ALTURA_CANVAS * -0.9),new Vetor(6,0)) 
-                estadoDoJogo.click += preco.lua * 0.6
-                aumentarUnidadeMassa()
+                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.9,ALTURA_CANVAS * -0.9),new Vetor(4,6)) 
+                estadoDoJogo.click += preco.lua/4
+                mudaClick()
             }
        }
     }

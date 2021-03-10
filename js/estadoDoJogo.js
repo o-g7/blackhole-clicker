@@ -5,7 +5,8 @@ import {CorpoCeleste} from "./sprite.js"
 export let corposCelestes = []
 export let estadoDoJogo = {
     click: 0,
-    aumentoMassa: 0,
+    aumentoMassa: 1,
+    horaDeAumentar: 1000,
     valorClick: 1
 }
 
@@ -32,12 +33,18 @@ export let imagens = {
     lua: new Image
 }
 
-export let aumentarUnidadeMassa = ()=> {
+export let mudaClick = ()=> {
     let unidadeMassa = document.querySelector('#massa')
+
     if(estadoDoJogo.click === 1){
         unidadeMassa.innerHTML = `${estadoDoJogo.click} unidade de massa` 
     } else {
         unidadeMassa.innerHTML = `${estadoDoJogo.click} unidades de massa` 
+    }
+
+    if(estadoDoJogo.click >= estadoDoJogo.horaDeAumentar){
+        estadoDoJogo.aumentoMassa = estadoDoJogo.aumentoMassa + 0.7
+        estadoDoJogo.horaDeAumentar = estadoDoJogo.horaDeAumentar*10
     }
 }
 

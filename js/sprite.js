@@ -39,6 +39,10 @@ export class BuracoNegro extends Sprite{
         super(posicao,largura,altura,imagem)
         this.massa = massa
     }
+
+    atualizandoMassa(novaMassa){
+        this.massa = novaMassa
+    }
 }
 
 export class CorpoCeleste extends Sprite{
