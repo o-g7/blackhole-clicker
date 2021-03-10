@@ -42,10 +42,12 @@ botaoLuaEl.addEventListener('click',()=>{
     if(estadoDoJogo.click>=preco.lua){
         if(preco.lua===1000){
             imagens.lua.src = "imgs/LUA_1_32.png"
-            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),32,32,imagens.lua,new Vetor(10,0),buracoNegroEl))
+            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.9, ALTURA_CANVAS * -0.9),32,32,imagens.lua,new Vetor(8,0),buracoNegroEl))
         }
+        niveis.lua +=1
         estadoDoJogo.click = estadoDoJogo.click - preco.lua
         preco.lua = preco.lua * 2
         aumentarUnidadeMassa()
     }
+    botaoLuaEl.innerHTML = `<div id="circulo"></div><p>Poder Lua: ${niveis.lua}</p><p id="Valor">Valor: ${preco.lua}</p>`
 })

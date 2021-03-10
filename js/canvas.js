@@ -26,7 +26,7 @@ buracoNegroImg.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click+= estadoDoJogo.valorClick
+            estadoDoJogo.click+= 100000
         }
     }
     aumentarUnidadeMassa()
@@ -52,12 +52,12 @@ function engoleCorpos(){
         if (atingiuBuracoNegro) {
             if(corpo.imagem === imagens.meteoro){
                 corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(0,4)) 
-                estadoDoJogo.click += 1000000
+                estadoDoJogo.click += preco.meteoro/2
                 aumentarUnidadeMassa()
             }
             if(corpo.imagem === imagens.lua){
-                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(10,0)) 
-                estadoDoJogo.click += preco.lua /1.5
+                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.9,ALTURA_CANVAS * -0.9),new Vetor(6,0)) 
+                estadoDoJogo.click += preco.lua * 0.6
                 aumentarUnidadeMassa()
             }
        }
