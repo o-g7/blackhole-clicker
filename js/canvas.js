@@ -5,6 +5,7 @@ import {CorpoCeleste} from "./sprite.js"
 import {estadoDoJogo} from "./estadoDoJogo.js"
 import {preco} from "./estadoDoJogo.js"
 import {aumentarUnidadeMassa} from "./estadoDoJogo.js"
+import {imagens} from "./estadoDoJogo.js"
 
 let canvas = document.querySelector('#clicker')
 export const ALTURA_CANVAS = canvas.height = window.innerHeight
@@ -49,9 +50,16 @@ function engoleCorpos(){
     for (let corpo of corposCelestes) {
         const atingiuBuracoNegro = corpo.horizonteEventos(buracoNegroEl)
         if (atingiuBuracoNegro) {
-            corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(0,4)) 
-            estadoDoJogo.click += preco.meteoro/2
-            aumentarUnidadeMassa()
+            if(corpo.imagem === imagens.meteoro){
+                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(0,4)) 
+                estadoDoJogo.click += 1000000
+                aumentarUnidadeMassa()
+            }
+            if(corpo.imagem === imagens.lua){
+                corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(10,0)) 
+                estadoDoJogo.click += preco.lua /1.5
+                aumentarUnidadeMassa()
+            }
        }
     }
 }

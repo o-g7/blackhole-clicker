@@ -17,7 +17,7 @@ botaoMeteoroEl.addEventListener('click',() => {
             imagens.meteoro.src = "imgs/blackhole-32.png"
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),32,32,imagens.meteoro,new Vetor(0,4),buracoNegroEl))
         }
-        estadoDoJogo.click =estadoDoJogo.click - preco.meteoro
+        estadoDoJogo.click = estadoDoJogo.click - preco.meteoro
         preco.meteoro = preco.meteoro*2
         niveis.meteoro += 1
         aumentarUnidadeMassa()
@@ -35,4 +35,17 @@ botaoCondensadorEl.addEventListener('click',() => {
         aumentarUnidadeMassa()
     }
     botaoCondensadorEl.innerHTML = `<div id="circulo"></div><p>Condensador de Antimatéria: ${niveis.antiMateria}</p><p id="Valor">Valor: ${preco.antiMateria}</p>`
+})
+
+let botaoLuaEl = document.querySelector('#luas')
+botaoLuaEl.addEventListener('click',()=>{
+    if(estadoDoJogo.click>=preco.lua){
+        if(preco.lua===1000){
+            imagens.lua.src = "imgs/LUA_1_32.png"
+            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),32,32,imagens.lua,new Vetor(10,0),buracoNegroEl))
+        }
+        estadoDoJogo.click = estadoDoJogo.click - preco.lua
+        preco.lua = preco.lua * 2
+        aumentarUnidadeMassa()
+    }
 })

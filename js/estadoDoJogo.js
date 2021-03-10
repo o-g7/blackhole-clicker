@@ -29,6 +29,7 @@ export let niveis = {
 
 export let imagens = {
     meteoro: new Image,
+    lua: new Image
 }
 
 export let aumentarUnidadeMassa = ()=> {
