@@ -33,6 +33,16 @@ export let imagens = {
     lua: new Image
 }
 
+export let botoesEl = document.querySelectorAll('.comprar')
+let posicaoBotao = 2
+
+function construirBotoes() {
+    botoesEl[posicaoBotao].classList.remove('construindo')
+    botoesEl[posicaoBotao + 1].classList.remove('desligado')
+    botoesEl[posicaoBotao + 1].classList.add('construindo')
+    posicaoBotao++
+}
+
 export let mudaClick = ()=> {
     let unidadeMassa = document.querySelector('#massa')
 
@@ -43,6 +53,9 @@ export let mudaClick = ()=> {
     }
 
     if(estadoDoJogo.click >= estadoDoJogo.horaDeAumentar){
+        if(posicaoBotao<=6){
+            construirBotoes()
+        }
         estadoDoJogo.aumentoMassa = estadoDoJogo.aumentoMassa + 0.7
         estadoDoJogo.horaDeAumentar = estadoDoJogo.horaDeAumentar*10
     }

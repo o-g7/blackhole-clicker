@@ -105,17 +105,50 @@ h1::selection, p::selection {
     opacity: 1;
 }
 
+.comprar div p {
+    display: none;
+}
+
 .comprar.desligado {
     display: none;
 }
 
-.comprar.contruindo {
-    border: 2px dotted rgba(255, 160, 0, 0.9);
+@keyframes comecandoConstrucao {
+    from {
+        border: 2px dashed rgba(255, 160, 0, 0.5);
+        color: rgba(255, 160, 0, 0.5);
+        width: 0;
+        font-size: 1px;
+        letter-spacing: 0px;
+        line-height: 0px;
+    }
+
+    to {
+        border: 2px dashed rgba(255, 160, 0, 0.9);
+        color: rgba(255, 160, 0, 0.9);
+        width: 250px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 20px;
+    }
+}
+
+.comprar.construindo {
+    animation: comecandoConstrucao 1s ease-out;
+    border: 2px dashed rgba(255, 160, 0, 0.9);
     color: rgba(255, 160, 0, 0.9);
 }
 
-.comprar.comprar.contruindo div {
+.comprar.construindo div {
     background-color: orange;
+}
+
+.comprar.construindo:hover p {
+    display: none;
+}
+
+.comprar.construindo:hover div p {
+    display: none;
 }
 
 #click {

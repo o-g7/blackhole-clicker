@@ -6,12 +6,13 @@ import {preco} from "./estadoDoJogo.js"
 import {imagens} from "./estadoDoJogo.js"
 import {mudaClick} from "./estadoDoJogo.js"
 import {niveis} from "./estadoDoJogo.js"
+import {botoesEl} from "./estadoDoJogo.js"
 import {buracoNegroEl} from "./canvas.js"
 import {ALTURA_CANVAS} from "./canvas.js"
 import {LARGURA_CANVAS} from "./canvas.js"
 
-let botaoMeteoroEl = document.querySelector('#meteoro')
-botaoMeteoroEl.addEventListener('click',() => {
+
+botoesEl[0].addEventListener('click',() => {
     if(estadoDoJogo.click>=preco.meteoro){
         if(preco.meteoro===10){
             imagens.meteoro.src = "imgs/blackhole-32.png"
@@ -22,11 +23,11 @@ botaoMeteoroEl.addEventListener('click',() => {
         niveis.meteoro += 1
         mudaClick()
     }
-    botaoMeteoroEl.innerHTML = `<div></div><p>Poder do Meteoro: ${niveis.meteoro}</p><p id="Valor">Valor: ${preco.meteoro}</p>`
+    botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${niveis.meteoro}</p><p id="Valor">Valor: ${preco.meteoro}</p>`
 })
 
-let botaoCondensadorEl = document.querySelector('#condensador')
-botaoCondensadorEl.addEventListener('click',() => {
+
+botoesEl[1].addEventListener('click',() => {
     if(estadoDoJogo.click>=preco.antiMateria){
         niveis.antiMateria += 1
         estadoDoJogo.valorClick = niveis.antiMateria * 2
@@ -34,11 +35,11 @@ botaoCondensadorEl.addEventListener('click',() => {
         preco.antiMateria = preco.antiMateria * 2
         mudaClick()
     }
-    botaoCondensadorEl.innerHTML = `<div></div><p>Condensador de Antimatéria: ${niveis.antiMateria}</p><p id="Valor">Valor: ${preco.antiMateria}</p>`
+    botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${niveis.antiMateria}</p><p id="Valor">Valor: ${preco.antiMateria}</p>`
 })
 
-let botaoLuaEl = document.querySelector('#luas')
-botaoLuaEl.addEventListener('click',()=>{
+
+botoesEl[2].addEventListener('click',()=>{
     if(estadoDoJogo.click>=preco.lua){
         if(preco.lua===1000){
             imagens.lua.src = "imgs/LUA_1_32.png"
@@ -49,5 +50,5 @@ botaoLuaEl.addEventListener('click',()=>{
         preco.lua = preco.lua * 2
         mudaClick()
     }
-    botaoLuaEl.innerHTML = `<div></div><p>Poder Lua: ${niveis.lua}</p><p id="Valor">Valor: ${preco.lua}</p>`
+    botoesEl[2].innerHTML = `<div></div><p>Poder Lua: ${niveis.lua}</p><p id="Valor">Valor: ${preco.lua}</p>`
 })
