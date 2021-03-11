@@ -40,8 +40,11 @@ export class BuracoNegro extends Sprite{
         this.massa = massa
     }
 
-    atualizandoMassa(novaMassa){
+    atualizandoBuracoNegro(novaMassa){
         this.massa = novaMassa
+        this.largura += novaMassa*10
+        this.altura += novaMassa*10
+        
     }
 }
 

@@ -1,6 +1,7 @@
 import Vetor from "./vetor.js"
 import {BuracoNegro} from "./sprite.js"
 import {CorpoCeleste} from "./sprite.js"
+import {buracoNegroEl} from "./canvas.js"
 
 export let corposCelestes = []
 export let estadoDoJogo = {
@@ -14,9 +15,9 @@ export let preco = {
     meteoro: 10,
     antiMateria: 250,
     lua: 1000,
-    anao: 5000,
-    planeta: 10000,
-    estrela : 100000
+    anao: 10000,
+    planeta: 100000,
+    estrela : 1000000
 }
 
 export let niveis = {
@@ -30,7 +31,10 @@ export let niveis = {
 
 export let imagens = {
     meteoro: new Image,
-    lua: new Image
+    lua: new Image,
+    anao: new Image,
+    planeta: new Image,
+    estrela: new Image
 }
 
 export let botoesEl = document.querySelectorAll('.comprar')
@@ -38,8 +42,10 @@ let posicaoBotao = 2
 
 function construirBotoes() {
     botoesEl[posicaoBotao].classList.remove('construindo')
-    botoesEl[posicaoBotao + 1].classList.remove('desligado')
-    botoesEl[posicaoBotao + 1].classList.add('construindo')
+    if(posicaoBotao<5){
+        botoesEl[posicaoBotao + 1].classList.remove('desligado')
+        botoesEl[posicaoBotao + 1].classList.add('construindo')
+    }
     posicaoBotao++
 }
 
@@ -56,6 +62,7 @@ export let mudaClick = ()=> {
         if(posicaoBotao<=6){
             construirBotoes()
         }
+        buracoNegroEl.atualizandoBuracoNegro(estadoDoJogo.aumentoMassa)
         estadoDoJogo.aumentoMassa = estadoDoJogo.aumentoMassa + 0.7
         estadoDoJogo.horaDeAumentar = estadoDoJogo.horaDeAumentar*10
     }

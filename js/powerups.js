@@ -52,3 +52,45 @@ botoesEl[2].addEventListener('click',()=>{
     }
     botoesEl[2].innerHTML = `<div></div><p>Poder Lua: ${niveis.lua}</p><p id="Valor">Valor: ${preco.lua}</p>`
 })
+
+botoesEl[3].addEventListener('click',()=>{
+    if(estadoDoJogo.click>=preco.anao){
+        if(preco.anao===10000){
+            imagens.anao.src = "imgs/LUA_2_128.png"
+            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS ),48,48,imagens.anao,new Vetor(0,10),buracoNegroEl))
+        }
+        niveis.anao += 1
+        estadoDoJogo.click = estadoDoJogo.click - preco.anao
+        preco.anao = preco.anao * 2
+        mudaClick()
+    }
+    botoesEl[3].innerHTML = `<div></div><p>Poder Anão: ${niveis.anao}</p><p id="Valor">Valor: ${preco.anao}</p>`
+})
+
+botoesEl[4].addEventListener('click',()=>{
+    if(estadoDoJogo.click>=preco.planeta){
+        if(preco.planeta===100000){
+            imagens.planeta.src = "imgs/LUA_2_128.png"
+            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
+        }
+        niveis.planeta += 1
+        estadoDoJogo.click = estadoDoJogo.click - preco.planeta
+        preco.planeta = preco.planeta * 2
+        mudaClick()
+    }
+    botoesEl[4].innerHTML = `<div></div><p>Poder Planeta: ${niveis.planeta}</p><p id="Valor">Valor: ${preco.planeta}</p>`
+})
+
+botoesEl[5].addEventListener('click',()=>{
+    if(estadoDoJogo.click>=preco.estrela){
+        if(preco.estrela===1000000){
+            imagens.estrela.src = "imgs/LUA_2_128.png"
+            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),128,128,imagens.estrela,new Vetor(0,17.5),buracoNegroEl))
+        }
+        niveis.estrela += 1
+        estadoDoJogo.click = estadoDoJogo.click - preco.estrela
+        preco.estrela= preco.estrela * 2
+        mudaClick()
+    }
+    botoesEl[5].innerHTML = `<div></div><p>Poder Planeta: ${niveis.estrela}</p><p id="Valor">Valor: ${preco.estrela}</p>`
+})

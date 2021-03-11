@@ -12,10 +12,10 @@ export const ALTURA_CANVAS = canvas.height = window.innerHeight
 export const LARGURA_CANVAS = canvas.width = window.innerWidth
 
 let ctx = canvas.getContext('2d')
-let pontoDeSuccao = new Vetor((LARGURA_CANVAS - estadoDoJogo.aumentoMassa)/2.1,(ALTURA_CANVAS - estadoDoJogo.aumentoMassa)/2.8)
+let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)
 let buracoNegroImg = new Image
 buracoNegroImg.src = "imgs/blackhole-128.png"
-export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127+estadoDoJogo.aumentoMassa,127+estadoDoJogo.aumentoMassa,buracoNegroImg,estadoDoJogo.aumentoMassa)
+export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg,estadoDoJogo.aumentoMassa)
 
 
 buracoNegroImg.addEventListener('load',()=>{
@@ -25,7 +25,7 @@ buracoNegroImg.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click+= 100
+            estadoDoJogo.click+= 100000
         }
     }
     mudaClick()
@@ -40,7 +40,6 @@ function desenhaCanvas(){
 }
 
 function atualizaJogo(){
-    buracoNegroEl.atualizandoMassa(estadoDoJogo.aumentoMassa)
     for (let corpo of corposCelestes) {
         corpo.atualizaCorposCelestes()
     }
@@ -57,8 +56,23 @@ function engoleCorpos(){
             }
             if(corpo.imagem === imagens.lua){
                 corpo.morrer(new Vetor(LARGURA_CANVAS * -0.9,ALTURA_CANVAS * -0.9),new Vetor(4,6)) 
-                estadoDoJogo.click += preco.lua/4
+                estadoDoJogo.click += preco.lua/2.5
                 mudaClick()
+            }
+            if(corpo.imagem === imagens.anao){
+                corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS ),new Vetor(0,10)) 
+                estadoDoJogo.click += preco.anao/4
+                mudaClick()
+            }
+            if(corpo.imagem === imagens.planeta){
+                corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS * -0.9 ),new Vetor(0,17.5)) 
+                estadoDoJogo.click += preco.planeta/4.5
+                mudaClick()
+            }
+            if(corpo.imagem === imagens.estrela){
+                corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS * -0.9 ),new Vetor(0,17.5)) 
+                estadoDoJogo.click += preco.planeta/5
+                mudaClick() 
             }
        }
     }
