@@ -22,6 +22,13 @@ export let estadoDoJogo = {
         anao: 0,
         planeta: 0,
         estrela : 0
+    },
+    existencia: {
+        meteoro: false,
+        lua: false,
+        anao: false,
+        planeta: false,
+        estrela : false
     }
 }
 
@@ -34,7 +41,7 @@ export let imagens = {
 }
 
 let horaDeAumentar = 1000
-export let aumentoMassa = 10
+export let aumentoMassa = 1
 
 imagens.meteoro.src = "imgs/blackhole-32.png"
 imagens.lua.src = "imgs/LUA_1_32.png"

@@ -9,17 +9,43 @@ import {buracoNegroEl} from "./canvas.js"
 import {ALTURA_CANVAS} from "./canvas.js"
 import {LARGURA_CANVAS} from "./canvas.js"
 
+export function restauracao(){
+    botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${estadoDoJogo.niveis.meteoro}</p><p id="Valor">Valor: ${estadoDoJogo.precos.meteoro}</p>`
+    botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${estadoDoJogo.niveis.antiMateria}</p><p id="Valor">Valor: ${estadoDoJogo.precos.antiMateria}</p>`
+    botoesEl[2].innerHTML = `<div></div><p>Poder Lua: ${estadoDoJogo.niveis.lua}</p><p id="Valor">Valor: ${estadoDoJogo.precos.lua}</p>`
+    botoesEl[3].innerHTML = `<div></div><p>Poder Anão: ${estadoDoJogo.niveis.anao}</p><p id="Valor">Valor: ${estadoDoJogo.precos.anao}</p>`
+    botoesEl[4].innerHTML = `<div></div><p>Poder Planeta: ${estadoDoJogo.niveis.planeta}</p><p id="Valor">Valor: ${estadoDoJogo.precos.planeta}</p>`
+    botoesEl[5].innerHTML = `<div></div><p>Poder Estrela: ${estadoDoJogo.niveis.estrela}</p><p id="Valor">Valor: ${estadoDoJogo.precos.estrela}</p>`
+
+    if(estadoDoJogo.existencia.meteoro) {
+        corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),16,16,imagens.meteoro,new Vetor(1,4),buracoNegroEl))
+    }
+    if(estadoDoJogo.existencia.lua) {
+        corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.9, ALTURA_CANVAS * -0.9),32,32,imagens.lua,new Vetor(4,6),buracoNegroEl))
+    }
+    if(estadoDoJogo.existencia.anao) {
+        corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS ),48,48,imagens.anao,new Vetor(0,10),buracoNegroEl))
+    }
+    if(estadoDoJogo.existencia.planeta) {
+        corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
+    }
+    if(estadoDoJogo.existencia.estrela) {
+        corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
+    }
+}
+
 botoesEl[0].addEventListener('click', () => {
     if(estadoDoJogo.click>=estadoDoJogo.precos.meteoro){
-        if(estadoDoJogo.precos.meteoro===10){
+        if(!estadoDoJogo.existencia.meteoro){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),16,16,imagens.meteoro,new Vetor(1,4),buracoNegroEl))
+            estadoDoJogo.existencia.meteoro = true
         }
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.meteoro
         estadoDoJogo.precos.meteoro = estadoDoJogo.precos.meteoro*2
         estadoDoJogo.niveis.meteoro += 1
         atualizaClick()
     }
-    botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${estadoDoJogo.niveis.meteoro}</p><p id="Valor">Valor: ${estadoDoJogo.precos.meteoro}</p>`
+    restauracao()
 })
 
 
@@ -31,58 +57,62 @@ botoesEl[1].addEventListener('click',() => {
         estadoDoJogo.precos.antiMateria = estadoDoJogo.precos.antiMateria * 2
         atualizaClick()
     }
-    botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${estadoDoJogo.niveis.antiMateria}</p><p id="Valor">Valor: ${estadoDoJogo.precos.antiMateria}</p>`
-})
+    restauracao()
+})    
 
 
 botoesEl[2].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.precos.lua){
-        if(estadoDoJogo.precos.lua===1000){
+        if(!estadoDoJogo.existencia.lua){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.9, ALTURA_CANVAS * -0.9),32,32,imagens.lua,new Vetor(4,6),buracoNegroEl))
+            estadoDoJogo.existencia.lua = true
         }
         estadoDoJogo.niveis.lua +=1
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.lua
         estadoDoJogo.precos.lua = estadoDoJogo.precos.lua * 2
         atualizaClick()
     }
-    botoesEl[2].innerHTML = `<div></div><p>Poder Lua: ${estadoDoJogo.niveis.lua}</p><p id="Valor">Valor: ${estadoDoJogo.precos.lua}</p>`
+    restauracao()
 })
 
 botoesEl[3].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.precos.anao){
-        if(estadoDoJogo.precos.anao===10000){
+        if(!estadoDoJogo.existencia.anao){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS ),48,48,imagens.anao,new Vetor(0,10),buracoNegroEl))
+            estadoDoJogo.existencia.anao = true
         }
         estadoDoJogo.niveis.anao += 1
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.anao
         estadoDoJogo.precos.anao = estadoDoJogo.precos.anao * 2
         atualizaClick()
     }
-    botoesEl[3].innerHTML = `<div></div><p>Poder Anão: ${estadoDoJogo.niveis.anao}</p><p id="Valor">Valor: ${estadoDoJogo.precos.anao}</p>`
+    restauracao()
 })
 
 botoesEl[4].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.precos.planeta){
-        if(estadoDoJogo.precos.planeta===100000){
+        if(!estadoDoJogo.existencia.planeta){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
+            estadoDoJogo.existencia.planeta = true
         }
         estadoDoJogo.niveis.planeta += 1
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.planeta
         estadoDoJogo.precos.planeta = estadoDoJogo.precos.planeta * 2
         atualizaClick()
     }
-    botoesEl[4].innerHTML = `<div></div><p>Poder Planeta: ${estadoDoJogo.niveis.planeta}</p><p id="Valor">Valor: ${estadoDoJogo.precos.planeta}</p>`
+    restauracao()
 })
 
 botoesEl[5].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.precos.estrela){
-        if(estadoDoJogo.precos.estrela===1000000){
+        if(!estadoDoJogo.existencia.estrela){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),128,128,imagens.estrela,new Vetor(0,17.5),buracoNegroEl))
+            estadoDoJogo.existencia.estrela = true
         }
         estadoDoJogo.niveis.estrela += 1
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.estrela
         estadoDoJogo.precos.estrela= estadoDoJogo.precos.estrela * 2
         atualizaClick()
     }
-    botoesEl[5].innerHTML = `<div></div><p>Poder Planeta: ${estadoDoJogo.niveis.estrela}</p><p id="Valor">Valor: ${estadoDoJogo.precos.estrela}</p>`
+    restauracao()
 })

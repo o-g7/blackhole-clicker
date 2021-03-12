@@ -7,7 +7,6 @@ import {atualizaClick} from "./estadoDoJogo.js"
 import {imagens} from "./estadoDoJogo.js"
 import {aumentoMassa} from "./estadoDoJogo.js"
 
-let massa = 1
 let canvas = document.querySelector('#clicker')
 export const ALTURA_CANVAS = canvas.height = window.innerHeight
 export const LARGURA_CANVAS = canvas.width = window.innerWidth
@@ -16,7 +15,7 @@ let ctx = canvas.getContext('2d')
 let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)
 let buracoNegroImg = new Image
 buracoNegroImg.src = "imgs/blackhole-128.png"
-export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg,massa)
+export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg,aumentoMassa)
 
 
 
@@ -42,7 +41,7 @@ function desenhaCanvas(){
 }
 
 function atualizaJogo(){
-    buracoNegroEl.atualizandoBuracoNegro(massa)
+    buracoNegroEl.atualizandoBuracoNegro(aumentoMassa)
     for (let corpo of corposCelestes) {
         corpo.atualizaCorposCelestes()
     }
