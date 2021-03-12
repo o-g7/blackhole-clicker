@@ -3,10 +3,11 @@ import Vetor from "./vetor.js"
 import {BuracoNegro} from "./sprite.js"
 import {CorpoCeleste} from "./sprite.js"
 import {estadoDoJogo} from "./estadoDoJogo.js"
-import {preco} from "./estadoDoJogo.js"
-import {mudaClick} from "./estadoDoJogo.js"
+import {atualizaClick} from "./estadoDoJogo.js"
 import {imagens} from "./estadoDoJogo.js"
+import {aumentoMassa} from "./estadoDoJogo.js"
 
+let massa = 1
 let canvas = document.querySelector('#clicker')
 export const ALTURA_CANVAS = canvas.height = window.innerHeight
 export const LARGURA_CANVAS = canvas.width = window.innerWidth
@@ -15,7 +16,8 @@ let ctx = canvas.getContext('2d')
 let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)
 let buracoNegroImg = new Image
 buracoNegroImg.src = "imgs/blackhole-128.png"
-export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg,estadoDoJogo.aumentoMassa)
+export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg,massa)
+
 
 
 buracoNegroImg.addEventListener('load',()=>{
@@ -25,10 +27,10 @@ buracoNegroImg.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click+= 100000
+            estadoDoJogo.click += 100000
         }
     }
-    mudaClick()
+    atualizaClick()
 })
 
 function desenhaCanvas(){
@@ -40,6 +42,7 @@ function desenhaCanvas(){
 }
 
 function atualizaJogo(){
+    buracoNegroEl.atualizandoBuracoNegro(massa)
     for (let corpo of corposCelestes) {
         corpo.atualizaCorposCelestes()
     }
@@ -51,34 +54,34 @@ function engoleCorpos(){
         if (atingiuBuracoNegro) {
             if(corpo.imagem === imagens.meteoro){
                 corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(1,4)) 
-                estadoDoJogo.click += preco.meteoro/2
-                mudaClick()
+                estadoDoJogo.click += estadoDoJogo.precos.meteoro/2
+                atualizaClick()
             }
             if(corpo.imagem === imagens.lua){
                 corpo.morrer(new Vetor(LARGURA_CANVAS * -0.9,ALTURA_CANVAS * -0.9),new Vetor(4,6)) 
-                estadoDoJogo.click += preco.lua/2.5
-                mudaClick()
+                estadoDoJogo.click += estadoDoJogo.precos.lua/2.5
+                atualizaClick()
             }
             if(corpo.imagem === imagens.anao){
                 corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS ),new Vetor(0,10)) 
-                estadoDoJogo.click += preco.anao/4
-                mudaClick()
+                estadoDoJogo.click += estadoDoJogo.precos.anao/4
+                atualizaClick()
             }
             if(corpo.imagem === imagens.planeta){
                 corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS * -0.9 ),new Vetor(0,17.5)) 
-                estadoDoJogo.click += preco.planeta/4.5
-                mudaClick()
+                estadoDoJogo.click += estadoDoJogo.precos.planeta/4.5
+                atualizaClick()
             }
             if(corpo.imagem === imagens.estrela){
                 corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS * -0.9 ),new Vetor(0,17.5)) 
-                estadoDoJogo.click += preco.planeta/5
-                mudaClick() 
+                estadoDoJogo.click += estadoDoJogo.precos.planeta/5
+                atualizaClick() 
             }
        }
     }
 }
 
-function ojogo(){
+export function ojogo(){
     desenhaCanvas()
     atualizaJogo()
     engoleCorpos()
