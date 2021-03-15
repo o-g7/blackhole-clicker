@@ -7,29 +7,6 @@ export let corposCelestes = []
 export let estadoDoJogo = {
     click: 0,
     valorClick: 1,
-    precos: {
-        meteoro: 10,
-        antiMateria: 250,
-        lua: 1000,
-        anao: 10000,
-        planeta: 100000,
-        estrela : 1000000
-    },
-    niveis : {
-        meteoro: 0,
-        antiMateria: 0,
-        lua: 0,
-        anao: 0,
-        planeta: 0,
-        estrela : 0
-    },
-    existencia: {
-        meteoro: false,
-        lua: false,
-        anao: false,
-        planeta: false,
-        estrela : false
-    },
     meteoro: {
         preco: 10,
         nivel: 0,

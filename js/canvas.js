@@ -26,7 +26,7 @@ buracoNegroImg.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click += 100000
+            estadoDoJogo.click += 100
         }
     }
     atualizaClick()
@@ -53,27 +53,27 @@ function engoleCorpos(){
         if (atingiuBuracoNegro) {
             if(corpo.imagem === imagens.meteoro){
                 corpo.morrer(new Vetor(LARGURA_CANVAS * -0.1,ALTURA_CANVAS * -0.1),new Vetor(1,4)) 
-                estadoDoJogo.click += estadoDoJogo.meteoro.preco/2
+                estadoDoJogo.click += estadoDoJogo.meteoro.preco/10
                 atualizaClick()
             }
             if(corpo.imagem === imagens.lua){
                 corpo.morrer(new Vetor(LARGURA_CANVAS * -0.9,ALTURA_CANVAS * -0.9),new Vetor(4,6)) 
-                estadoDoJogo.click += estadoDoJogo.lua.preco/2.5
+                estadoDoJogo.click += estadoDoJogo.lua.preco/8
                 atualizaClick()
             }
             if(corpo.imagem === imagens.anao){
                 corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS ),new Vetor(0,10)) 
-                estadoDoJogo.click += estadoDoJogo.anao.preco/4
+                estadoDoJogo.click += estadoDoJogo.anao.preco/5
                 atualizaClick()
             }
             if(corpo.imagem === imagens.planeta){
                 corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS * -0.9 ),new Vetor(0,17.5)) 
-                estadoDoJogo.click += estadoDoJogo.planeta.preco/4.5
+                estadoDoJogo.click += estadoDoJogo.planeta.preco/4
                 atualizaClick()
             }
             if(corpo.imagem === imagens.estrela){
-                corpo.morrer(new Vetor(LARGURA_CANVAS ,ALTURA_CANVAS * -0.9 ),new Vetor(0,17.5)) 
-                estadoDoJogo.click += estadoDoJogo.estrela.preco/5
+                corpo.morrer(new Vetor(LARGURA_CANVAS * 1.7,ALTURA_CANVAS * -1.7),new Vetor(0,17.5)) 
+                estadoDoJogo.click += estadoDoJogo.estrela.preco/2
                 atualizaClick() 
             }
        }

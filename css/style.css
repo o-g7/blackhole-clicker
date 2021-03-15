@@ -61,6 +61,7 @@ h1::selection, p::selection {
 
 
 .comprar {
+    animation: terminandoConstrucao 10s ease-out;
     width: 250px;
     height: 64px;
     margin-bottom: 2px;
@@ -73,6 +74,18 @@ h1::selection, p::selection {
     overflow: hidden;
     position: relative;
     cursor: pointer;
+}
+
+@keyframes terminandoConstrucao {
+    from {
+        border: 2px solid rgba(255, 160, 0, 0.9);
+        color: rgba(255, 160, 0, 0.9);
+    }
+
+    to {
+        border: 2px solid rgba(255, 217, 0, 0.9);
+        color: rgba(255, 217, 0, 0.9);
+    }
 }
 
 .comprar p {
@@ -113,11 +126,17 @@ h1::selection, p::selection {
     display: none;
 }
 
+.comprar.construindo {
+    animation: comecandoConstrucao 1s ease-out;
+    border: 2px dashed rgba(255, 160, 0, 0.9);
+    color: rgba(255, 160, 0, 0.9);
+}
+
 @keyframes comecandoConstrucao {
     from {
         border: 2px dashed rgba(255, 160, 0, 0.5);
         color: rgba(255, 160, 0, 0.5);
-        width: 0;
+        height: 0;
         font-size: 1px;
         letter-spacing: 0px;
         line-height: 0px;
@@ -126,17 +145,11 @@ h1::selection, p::selection {
     to {
         border: 2px dashed rgba(255, 160, 0, 0.9);
         color: rgba(255, 160, 0, 0.9);
-        width: 250px;
+        height: 64px;
         font-size: 13px;
         letter-spacing: 1px;
         line-height: 20px;
     }
-}
-
-.comprar.construindo {
-    animation: comecandoConstrucao 1s ease-out;
-    border: 2px dashed rgba(255, 160, 0, 0.9);
-    color: rgba(255, 160, 0, 0.9);
 }
 
 .comprar.construindo div {

@@ -30,14 +30,13 @@ export function restauracao(){
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
     }
     if(estadoDoJogo.estrela.existencia) {
-        corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
+        corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * 1.7, ALTURA_CANVAS * -1.7),128,128,imagens.estrela,new Vetor(0,17.5),buracoNegroEl))
     }
 }
 
 botoesEl[0].addEventListener('click', () => {
     if(estadoDoJogo.click>=estadoDoJogo.meteoro.preco){
         if(!estadoDoJogo.meteoro.existencia){
-            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),16,16,imagens.meteoro,new Vetor(1,4),buracoNegroEl))
             estadoDoJogo.meteoro.existencia = true
         }
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.meteoro.preco
@@ -64,7 +63,6 @@ botoesEl[1].addEventListener('click',() => {
 botoesEl[2].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.lua.preco){
         if(!estadoDoJogo.lua.existencia){
-            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.9, ALTURA_CANVAS * -0.9),32,32,imagens.lua,new Vetor(4,6),buracoNegroEl))
             estadoDoJogo.lua.existencia = true
         }
         estadoDoJogo.lua.nivel +=1
@@ -78,8 +76,6 @@ botoesEl[2].addEventListener('click',()=>{
 botoesEl[3].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.anao.preco){
         if(!estadoDoJogo.anao.existencia){
-            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS ),48,48,imagens.anao,new Vetor(0,10),buracoNegroEl))
-            estadoDoJogo.anao.existencia = true
         }
         estadoDoJogo.anao.nivel += 1
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.anao.preco
@@ -92,7 +88,6 @@ botoesEl[3].addEventListener('click',()=>{
 botoesEl[4].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.planeta.preco){
         if(!estadoDoJogo.existencia.planeta){
-            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
             estadoDoJogo.existencia.planeta = true
         }
         estadoDoJogo.planeta.nivel += 1
@@ -106,7 +101,6 @@ botoesEl[4].addEventListener('click',()=>{
 botoesEl[5].addEventListener('click',()=>{
     if(estadoDoJogo.click>=estadoDoJogo.estrela.preco){
         if(!estadoDoJogo.estrela.existencia){
-            corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),128,128,imagens.estrela,new Vetor(0,17.5),buracoNegroEl))
             estadoDoJogo.estrela.existencia = true
         }
         estadoDoJogo.estrela.nivel += 1
