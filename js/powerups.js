@@ -10,39 +10,39 @@ import {ALTURA_CANVAS} from "./canvas.js"
 import {LARGURA_CANVAS} from "./canvas.js"
 
 export function restauracao(){
-    botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${estadoDoJogo.niveis.meteoro}</p><p id="Valor">Valor: ${estadoDoJogo.precos.meteoro}</p>`
-    botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${estadoDoJogo.niveis.antiMateria}</p><p id="Valor">Valor: ${estadoDoJogo.precos.antiMateria}</p>`
-    botoesEl[2].innerHTML = `<div></div><p>Poder Lua: ${estadoDoJogo.niveis.lua}</p><p id="Valor">Valor: ${estadoDoJogo.precos.lua}</p>`
-    botoesEl[3].innerHTML = `<div></div><p>Poder Anão: ${estadoDoJogo.niveis.anao}</p><p id="Valor">Valor: ${estadoDoJogo.precos.anao}</p>`
-    botoesEl[4].innerHTML = `<div></div><p>Poder Planeta: ${estadoDoJogo.niveis.planeta}</p><p id="Valor">Valor: ${estadoDoJogo.precos.planeta}</p>`
-    botoesEl[5].innerHTML = `<div></div><p>Poder Estrela: ${estadoDoJogo.niveis.estrela}</p><p id="Valor">Valor: ${estadoDoJogo.precos.estrela}</p>`
+    botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${estadoDoJogo.meteoro.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.meteoro.preco}</p>`
+    botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${estadoDoJogo.antiMateria.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.antiMateria.preco}</p>`
+    botoesEl[2].innerHTML = `<div></div><p>Poder Lua: ${estadoDoJogo.lua.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.lua.preco}</p>`
+    botoesEl[3].innerHTML = `<div></div><p>Poder Anão: ${estadoDoJogo.anao.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.anao.preco}</p>`
+    botoesEl[4].innerHTML = `<div></div><p>Poder Planeta: ${estadoDoJogo.planeta.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.planeta.preco}</p>`
+    botoesEl[5].innerHTML = `<div></div><p>Poder Estrela: ${estadoDoJogo.estrela.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.estrela.preco}</p>`
 
-    if(estadoDoJogo.existencia.meteoro) {
+    if(estadoDoJogo.meteoro.existencia) {
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),16,16,imagens.meteoro,new Vetor(1,4),buracoNegroEl))
     }
-    if(estadoDoJogo.existencia.lua) {
+    if(estadoDoJogo.lua.existencia) {
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.9, ALTURA_CANVAS * -0.9),32,32,imagens.lua,new Vetor(4,6),buracoNegroEl))
     }
-    if(estadoDoJogo.existencia.anao) {
+    if(estadoDoJogo.anao.existencia) {
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS ),48,48,imagens.anao,new Vetor(0,10),buracoNegroEl))
     }
-    if(estadoDoJogo.existencia.planeta) {
+    if(estadoDoJogo.planeta.existencia) {
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
     }
-    if(estadoDoJogo.existencia.estrela) {
+    if(estadoDoJogo.estrela.existencia) {
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
     }
 }
 
 botoesEl[0].addEventListener('click', () => {
-    if(estadoDoJogo.click>=estadoDoJogo.precos.meteoro){
-        if(!estadoDoJogo.existencia.meteoro){
+    if(estadoDoJogo.click>=estadoDoJogo.meteoro.preco){
+        if(!estadoDoJogo.meteoro.existencia){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),16,16,imagens.meteoro,new Vetor(1,4),buracoNegroEl))
-            estadoDoJogo.existencia.meteoro = true
+            estadoDoJogo.meteoro.existencia = true
         }
-        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.meteoro
-        estadoDoJogo.precos.meteoro = estadoDoJogo.precos.meteoro*2
-        estadoDoJogo.niveis.meteoro += 1
+        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.meteoro.preco
+        estadoDoJogo.meteoro.preco = estadoDoJogo.meteoro.preco * 2
+        estadoDoJogo.meteoro.nivel += 1
         atualizaClick()
     }
     restauracao()
@@ -50,11 +50,11 @@ botoesEl[0].addEventListener('click', () => {
 
 
 botoesEl[1].addEventListener('click',() => {
-    if(estadoDoJogo.click>=estadoDoJogo.precos.antiMateria){
-        estadoDoJogo.niveis.antiMateria += 1
-        estadoDoJogo.valorClick = estadoDoJogo.niveis.antiMateria * 2
-        estadoDoJogo.click =estadoDoJogo.click - estadoDoJogo.precos.antiMateria
-        estadoDoJogo.precos.antiMateria = estadoDoJogo.precos.antiMateria * 2
+    if(estadoDoJogo.click>=estadoDoJogo.antiMateria.preco){
+        estadoDoJogo.antiMateria.nivel += 1
+        estadoDoJogo.valorClick = estadoDoJogo.antiMateria.nivel * 2
+        estadoDoJogo.click =estadoDoJogo.click - estadoDoJogo.antiMateria.preco
+        estadoDoJogo.antiMateria.preco = estadoDoJogo.antiMateria.preco * 2
         atualizaClick()
     }
     restauracao()
@@ -62,56 +62,56 @@ botoesEl[1].addEventListener('click',() => {
 
 
 botoesEl[2].addEventListener('click',()=>{
-    if(estadoDoJogo.click>=estadoDoJogo.precos.lua){
-        if(!estadoDoJogo.existencia.lua){
+    if(estadoDoJogo.click>=estadoDoJogo.lua.preco){
+        if(!estadoDoJogo.lua.existencia){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.9, ALTURA_CANVAS * -0.9),32,32,imagens.lua,new Vetor(4,6),buracoNegroEl))
-            estadoDoJogo.existencia.lua = true
+            estadoDoJogo.lua.existencia = true
         }
-        estadoDoJogo.niveis.lua +=1
-        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.lua
-        estadoDoJogo.precos.lua = estadoDoJogo.precos.lua * 2
+        estadoDoJogo.lua.nivel +=1
+        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.lua.preco
+        estadoDoJogo.lua.preco = estadoDoJogo.lua.preco * 2
         atualizaClick()
     }
     restauracao()
 })
 
 botoesEl[3].addEventListener('click',()=>{
-    if(estadoDoJogo.click>=estadoDoJogo.precos.anao){
-        if(!estadoDoJogo.existencia.anao){
+    if(estadoDoJogo.click>=estadoDoJogo.anao.preco){
+        if(!estadoDoJogo.anao.existencia){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS ),48,48,imagens.anao,new Vetor(0,10),buracoNegroEl))
-            estadoDoJogo.existencia.anao = true
+            estadoDoJogo.anao.existencia = true
         }
-        estadoDoJogo.niveis.anao += 1
-        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.anao
-        estadoDoJogo.precos.anao = estadoDoJogo.precos.anao * 2
+        estadoDoJogo.anao.nivel += 1
+        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.anao.preco
+        estadoDoJogo.anao.preco = estadoDoJogo.anao.preco * 2
         atualizaClick()
     }
     restauracao()
 })
 
 botoesEl[4].addEventListener('click',()=>{
-    if(estadoDoJogo.click>=estadoDoJogo.precos.planeta){
+    if(estadoDoJogo.click>=estadoDoJogo.planeta.preco){
         if(!estadoDoJogo.existencia.planeta){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
             estadoDoJogo.existencia.planeta = true
         }
-        estadoDoJogo.niveis.planeta += 1
+        estadoDoJogo.planeta.nivel += 1
         estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.planeta
-        estadoDoJogo.precos.planeta = estadoDoJogo.precos.planeta * 2
+        estadoDoJogo.planeta.preco = estadoDoJogo.planeta.preco * 2
         atualizaClick()
     }
     restauracao()
 })
 
 botoesEl[5].addEventListener('click',()=>{
-    if(estadoDoJogo.click>=estadoDoJogo.precos.estrela){
-        if(!estadoDoJogo.existencia.estrela){
+    if(estadoDoJogo.click>=estadoDoJogo.estrela.preco){
+        if(!estadoDoJogo.estrela.existencia){
             corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),128,128,imagens.estrela,new Vetor(0,17.5),buracoNegroEl))
-            estadoDoJogo.existencia.estrela = true
+            estadoDoJogo.estrela.existencia = true
         }
-        estadoDoJogo.niveis.estrela += 1
-        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.precos.estrela
-        estadoDoJogo.precos.estrela= estadoDoJogo.precos.estrela * 2
+        estadoDoJogo.estrela.nivel += 1
+        estadoDoJogo.click = estadoDoJogo.click - estadoDoJogo.estrela.preco
+        estadoDoJogo.estrela.preco = estadoDoJogo.estrela.preco * 2
         atualizaClick()
     }
     restauracao()

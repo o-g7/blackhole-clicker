@@ -29,6 +29,36 @@ export let estadoDoJogo = {
         anao: false,
         planeta: false,
         estrela : false
+    },
+    meteoro: {
+        preco: 10,
+        nivel: 0,
+        existencia: false
+    },
+    antiMateria: {
+        preco: 250,
+        nivel: 0,
+        existencia: false
+    },
+    lua: {
+        preco: 1000,
+        nivel: 0,
+        existencia: false
+    },
+    anao: {
+        preco: 10000,
+        nivel: 0,
+        existencia: false
+    },
+    planeta: {
+        preco: 100000,
+        nivel: 0,
+        existencia: false
+    },
+    estrela: {
+        preco: 1000000,
+        nivel: 0,
+        existencia: false
     }
 }
 
@@ -43,7 +73,7 @@ export let imagens = {
 let horaDeAumentar = 1000
 export let aumentoMassa = 1
 
-imagens.meteoro.src = "imgs/blackhole-32.png"
+imagens.meteoro.src = "imgs/Meteoro_1_16.png"
 imagens.lua.src = "imgs/LUA_1_32.png"
 imagens.anao.src = "imgs/LUA_2_128.png"
 imagens.planeta.src = "imgs/LUA_2_128.png"

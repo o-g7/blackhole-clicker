@@ -10,9 +10,7 @@ export class Sprite {
     }
         
     desenhando(ctx) {
-        if (this.imagem) {
-            ctx.drawImage(this.imagem, this.posicao.x, this.posicao.y, this.largura, this.altura)
-        }
+        ctx.drawImage(this.imagem, this.posicao.x, this.posicao.y, this.largura, this.altura)
     }
 
     
