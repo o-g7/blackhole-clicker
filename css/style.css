@@ -115,7 +115,7 @@ h1::selection, p::selection {
 }
 
 #bigbang div {
-    255, 78, 73
+    background-color:  rgb(255, 78, 73);
 }
 
 .comprar:hover div {
