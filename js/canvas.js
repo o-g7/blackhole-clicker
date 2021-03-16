@@ -26,7 +26,7 @@ buracoNegroImg.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click += 100
+            estadoDoJogo.click += 10000000
         }
     }
     atualizaClick()
@@ -80,10 +80,20 @@ function engoleCorpos(){
     }
 }
 
+function horaDaMorte(){
+    if(corposCelestes.length != 0){
+        corposCelestes.pop()
+    }
+    
+}
+
 export function ojogo(){
     desenhaCanvas()
     atualizaJogo()
     engoleCorpos()
+    if(estadoDoJogo.bigBang.chegouHora === true){
+        horaDaMorte()
+    }
 }
 
 setInterval(()=>{

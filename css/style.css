@@ -1,6 +1,5 @@
 html {
-    background-color:  black;
-    color: rgba(255, 217, 0, 0.9);
+    background-color:  rgb(0, 0, 0);
 }
 
 body {
@@ -9,24 +8,16 @@ body {
     width: 100%;
     height: 100%;
     background-color: black;
-    
-    /* Composição de cada Estrela (cor, raios de luz em gradiente) */
     background-image:
         radial-gradient(rgb(255, 200, 200), rgba(255,255,255,.1) 2px, transparent 30px),
         radial-gradient(rgb(255, 255, 230), rgba(255,255,255,.1) 1px, transparent 20px),
         radial-gradient(rgb(200, 200, 255), rgba(255,255,255,.1) 2px, transparent 30px),
         radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 20px);
-
-    /* Tamanho e Área de ocupação dos 4 tipos de Estrela */
     background-size: 550px 650px, 350px 350px, 250px 270px, 220px 220px;
-
-    /* Implementanto a Animação */
     animation: orbita 180s linear infinite;
 }
 
-/* Animação de Orbita pelo Buraco Negro */
 @keyframes orbita {
-    /* Posição X e Y de origem e destino das Estrelas */
     from {
         background-position: 0 0, 30px 60px, 130px 270px, 70px 150px;
     }
@@ -34,6 +25,12 @@ body {
     to {
         background-position: -550px 0, -320px 60px, -120px 270px, -150px 150px;
     }
+}
+
+h1{
+    color: rgba(255, 217, 0, 0.9);
+    font-size: 30px;
+    text-align: center;
 }
 
 h1::selection, p::selection {
@@ -88,6 +85,13 @@ h1::selection, p::selection {
     }
 }
 
+#bigbang {
+    margin-top: 15px;
+    animation: none;
+    border: 2px solid rgba(255, 70, 0, 0.9);
+    color: rgba(255, 70, 0, 0.9);
+}
+
 .comprar p {
     margin: 0;
     position: relative;
@@ -110,6 +114,10 @@ h1::selection, p::selection {
     left: 120px;
 }
 
+#bigbang div {
+    255, 78, 73
+}
+
 .comprar:hover div {
     width: 200%;
     height: 500%;
@@ -118,7 +126,7 @@ h1::selection, p::selection {
     opacity: 1;
 }
 
-.comprar div p {
+.comprar div p{
     display: none;
 }
 
@@ -154,14 +162,57 @@ h1::selection, p::selection {
 
 .comprar.construindo div {
     background-color: orange;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    border-radius: 0;
+    left: 0;
+    top: -114px;
+    position: absolute;
+    align-items: center;
+    transition: all .2s ease-out;
+}
+
+.comprar.construindo div p {
+    display: block;
+}
+
+.comprar.construindo p {
+    top: 0;
+    transition: all .3s ease-out;
 }
 
 .comprar.construindo:hover p {
+    top: 114px;
+}
+
+.comprar.construindo:hover div{
+    color: black;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 1;
+}
+
+.comprar.construindo:hover div p{
+    top: 20px;
+}
+
+.comprar.construindo #conhecido {
     display: none;
 }
 
-.comprar.construindo:hover div p {
+.comprar.construindo #desconhecido {
+    display: block;
+}
+
+.comprar #desconhecido {
     display: none;
+}
+
+.comprar #conhecido {
+    display: block;
 }
 
 #click {
@@ -171,11 +222,6 @@ h1::selection, p::selection {
     width: 150px;
     height: 40px;
     color: red;
-}
-
-h1{
-    font-size: 30px;
-    text-align: center;
 }
 
 .login > img{

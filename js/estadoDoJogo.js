@@ -36,6 +36,10 @@ export let estadoDoJogo = {
         preco: 1000000,
         nivel: 0,
         existencia: false
+    },
+    bigBang: {
+        preco : 100000000,
+        chegouHora: false
     }
 }
 
@@ -61,14 +65,14 @@ let posicaoBotao = 2
 
 function construirBotoes() {
     botoesEl[posicaoBotao].classList.remove('construindo')
-    if(posicaoBotao<5){
+    if(posicaoBotao<6){
         botoesEl[posicaoBotao + 1].classList.remove('desligado')
         botoesEl[posicaoBotao + 1].classList.add('construindo')
     }
     posicaoBotao++
 }
 
-export let upgradeBuracoNegro = () =>{
+export let upgradeBuracoNegro = () => { 
     while(estadoDoJogo.click >= horaDeAumentar){
         if(posicaoBotao<=6){
             construirBotoes()
@@ -76,6 +80,9 @@ export let upgradeBuracoNegro = () =>{
         aumentoMassa = aumentoMassa + 0.7
         buracoNegroEl.atualizandoBuracoNegro(aumentoMassa)
         horaDeAumentar = horaDeAumentar*10
+        if (horaDeAumentar >= 10000000) {
+            horaDeAumentar = horaDeAumentar*10
+        }
     }
 }
 
@@ -96,7 +103,7 @@ export let atualizaContador = () => {
     } 
     
     else {
-        unidadeMassa.innerHTML = `${estadoDoJogo.click} unidades de massa` 
+        unidadeMassa.innerHTML = `${estadoDoJogo.click.toLocaleString()} unidades de massa` 
     }
 }
  
