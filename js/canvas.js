@@ -21,12 +21,18 @@ let buracoNegroImg = {
     imagem0 : new Image,
     imagem1 : new Image,
     imagem2 : new Image,
-    imagem3 : new Image
+    imagem3 : new Image,
+    imagem4 : new Image,
+    imagem5 : new Image,
+    imagem6 : new Image
 }
 buracoNegroImg.imagem0.src = "imgs/blackhole-128.png"
-buracoNegroImg.imagem1.src = "imgs/blackhole-128.png"
-buracoNegroImg.imagem2.src = "imgs/blackhole-128.png"
-buracoNegroImg.imagem3.src = "imgs/blackhole-128.png"
+buracoNegroImg.imagem1.src = "imgs/Whitehole_sprite_1.png"
+buracoNegroImg.imagem2.src = "imgs/Whitehole_sprite_2.png"
+buracoNegroImg.imagem3.src = "imgs/Whitehole_sprite_3.png"
+buracoNegroImg.imagem4.src = "imgs/Whitehole_sprite_4.png"
+buracoNegroImg.imagem5.src = "imgs/Whitehole_sprite_5.png"
+buracoNegroImg.imagem6.src = "imgs/Whitehole_sprite.png"
 export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg.imagem0,aumentoMassa)
 
 
@@ -118,11 +124,14 @@ async function horaDaMorte(){
         await espera(1000)
         botoesEl[numeroBotao].classList.add('desligado')
     }
+
+    document.querySelector('#massa').style.display = 'none'
+    document.querySelector('h1').style.display = 'none'
     
-    for (let numeroBuraco = 1; numeroBuraco <=3 ; numeroBuraco++) {
+    for (let numeroBuraco = 1; numeroBuraco <=6 ; numeroBuraco++) {
         let imagem = `imagem${numeroBuraco}`
         await espera(1000)
-        buracoNegroEl.desatualizaBuracoNegro(50, buracoNegroImg[imagem])
+        buracoNegroEl.desatualizaBuracoNegro(35, buracoNegroImg[imagem])
         desenhaCanvas() 
     }
 

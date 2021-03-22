@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    user-select: none;
     overflow: hidden;
     margin: 0;
     width: 100%;
@@ -31,11 +32,6 @@ h1{
     color: rgba(255, 217, 0, 0.9);
     font-size: 30px;
     text-align: center;
-}
-
-h1::selection, p::selection {
-    color: white;
-    background-color: rgba(255, 217, 0, 0.9);
 }
 
 #esquerda, #direita{
