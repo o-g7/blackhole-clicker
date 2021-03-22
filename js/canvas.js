@@ -2,10 +2,13 @@ import {corposCelestes} from "./estadoDoJogo.js"
 import Vetor from "./vetor.js"
 import {BuracoNegro} from "./sprite.js"
 import {CorpoCeleste} from "./sprite.js"
+import {botoesEl} from "./estadoDoJogo.js"
 import {estadoDoJogo} from "./estadoDoJogo.js"
 import {atualizaClick} from "./estadoDoJogo.js"
 import {imagens} from "./estadoDoJogo.js"
 import {aumentoMassa} from "./estadoDoJogo.js"
+import {atualizaContador} from "./estadoDoJogo.js"
+
 
 let canvas = document.querySelector('#clicker')
 export const ALTURA_CANVAS = canvas.height = window.innerHeight
@@ -13,13 +16,22 @@ export const LARGURA_CANVAS = canvas.width = window.innerWidth
 
 let ctx = canvas.getContext('2d')
 let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)
-let buracoNegroImg = new Image
-buracoNegroImg.src = "imgs/blackhole-128.png"
-export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg,aumentoMassa)
+
+let buracoNegroImg = {
+    imagem0 : new Image,
+    imagem1 : new Image,
+    imagem2 : new Image,
+    imagem3 : new Image
+}
+buracoNegroImg.imagem0.src = "imgs/blackhole-128.png"
+buracoNegroImg.imagem1.src = "imgs/blackhole-128.png"
+buracoNegroImg.imagem2.src = "imgs/blackhole-128.png"
+buracoNegroImg.imagem3.src = "imgs/blackhole-128.png"
+export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg.imagem0,aumentoMassa)
 
 
 
-buracoNegroImg.addEventListener('load',()=>{
+buracoNegroImg.imagem0.addEventListener('load',()=>{
     desenhaCanvas()
 })
 
@@ -80,14 +92,43 @@ function engoleCorpos(){
     }
 }
 
-function horaDaMorte(){
-    if(corposCelestes.length != 0){
-        corposCelestes.pop()
+function espera(tempo){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>resolve(),tempo)
+    })
+}  
+
+async function horaDaMorte(){
+    corposCelestes.splice(0,corposCelestes.length)
+
+    desenhaCanvas()
+    atualizaClick()
+    clearInterval(Intervalo)
+
+    document.querySelector('#massa').innerHTML = 'undefined'
+    document.querySelector('h1').innerHTML = 'ERROR'
+
+    let audio = new Audio('audio/Alerta.mp3')
+    audio.addEventListener('canplaythrough',() => {
+        audio.play()
+    })
+
+    for (let numeroBotao = 0; numeroBotao < botoesEl.length; numeroBotao++) {
+        botoesEl[numeroBotao].innerHTML = `<div></div><p>ERROR: undefined</p><p id="Valor">ERROR: undefined</p>`
+        await espera(1000)
+        botoesEl[numeroBotao].classList.add('desligado')
     }
     
+    for (let numeroBuraco = 1; numeroBuraco <=3 ; numeroBuraco++) {
+        let imagem = `imagem${numeroBuraco}`
+        await espera(1000)
+        buracoNegroEl.desatualizaBuracoNegro(50, buracoNegroImg[imagem])
+        desenhaCanvas() 
+    }
+
 }
 
-export function ojogo(){
+function ojogo(){
     desenhaCanvas()
     atualizaJogo()
     engoleCorpos()
@@ -96,6 +137,6 @@ export function ojogo(){
     }
 }
 
-setInterval(()=>{
+let Intervalo = setInterval(() => {
     ojogo()
 },33)

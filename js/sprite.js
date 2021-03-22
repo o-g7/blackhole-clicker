@@ -45,6 +45,12 @@ export class BuracoNegro extends Sprite{
             this.altura += novaMassa*10
         }
     }
+
+    desatualizaBuracoNegro(diminuir,novaImagem){
+        this.largura -= diminuir
+        this.altura -= diminuir
+        this.imagem = novaImagem
+    }
 }
 
 export class CorpoCeleste extends Sprite{
