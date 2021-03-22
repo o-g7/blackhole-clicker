@@ -125,15 +125,26 @@ async function horaDaMorte(){
         botoesEl[numeroBotao].classList.add('desligado')
     }
 
-    document.querySelector('#massa').style.display = 'none'
-    document.querySelector('h1').style.display = 'none'
+    await espera(1000)
+    document.querySelector('#esquerda').style.display = 'none'
+    document.querySelector('#direita').style.display = 'none'
     
-    for (let numeroBuraco = 1; numeroBuraco <=6 ; numeroBuraco++) {
+    for (let numeroBuraco = 1; numeroBuraco <7 ; numeroBuraco++) {
         let imagem = `imagem${numeroBuraco}`
         await espera(1000)
-        buracoNegroEl.desatualizaBuracoNegro(35, buracoNegroImg[imagem])
+        buracoNegroEl.desatualizaBuracoNegro(25, buracoNegroImg[imagem])
         desenhaCanvas() 
     }
+
+    await espera(1000)
+    ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)
+
+    canvas.style.display = 'none'
+    
+    let video = document.querySelector('video')
+    video.style.display = 'block'
+    video.style.zIndex = '3'
+    video.play()
 
 }
 
