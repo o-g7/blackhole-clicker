@@ -1,6 +1,4 @@
-html {
-    background-color:  rgb(0, 0, 0);
-}
+/* Background com Estrelas em Movimento Créditos - https://www.inwebson.com/css3/css3-background-animations/ */
 
 body {
     user-select: none;
@@ -14,7 +12,7 @@ body {
         radial-gradient(rgb(255, 255, 230), rgba(255,255,255,.1) 1px, transparent 20px),
         radial-gradient(rgb(200, 200, 255), rgba(255,255,255,.1) 2px, transparent 30px),
         radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 20px);
-    background-size: 550px 550px, 370px 370px, 350px 350px, 250px 250px;
+    background-size: 450px 450px, 370px 370px, 300px 300px, 230px 230px;
     animation: orbita 180s linear infinite;
 }
 

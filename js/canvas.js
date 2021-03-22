@@ -41,6 +41,7 @@ buracoNegroImg.imagem0.addEventListener('load',()=>{
     desenhaCanvas()
 })
 
+
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
@@ -136,16 +137,19 @@ async function horaDaMorte(){
         desenhaCanvas() 
     }
 
-    await espera(1000)
+    await espera(2000)
     ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)
 
     canvas.style.display = 'none'
+    await espera(1000)
     
     let video = document.querySelector('video')
     video.style.display = 'block'
     video.style.zIndex = '3'
-    video.play()
 
+    video.play()
+    await espera(33000)
+    location.href = 'credito.html'
 }
 
 function ojogo(){

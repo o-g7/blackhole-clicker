@@ -1,0 +1,63 @@
+/* Background com Estrelas em Movimento Créditos - https://www.inwebson.com/css3/css3-background-animations/ */
+
+body {
+    user-select: none;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-image:
+        radial-gradient(rgb(255, 200, 200), rgba(255,255,255,.1) 2px, transparent 30px),
+        radial-gradient(rgb(255, 255, 230), rgba(255,255,255,.1) 1px, transparent 20px),
+        radial-gradient(rgb(200, 200, 255), rgba(255,255,255,.1) 2px, transparent 30px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 20px);
+    background-size: 450px 450px, 370px 370px, 300px 300px, 230px 230px;
+    animation: orbita 180s linear infinite;
+}
+
+@keyframes orbita {
+    from {
+        background-position: 0 5px, 30px 5px, 130px 285px, 70px 165px;
+    }
+    
+    to {
+        background-position: -650px 5px, -350px 5px, -250px 285px, -220px 165px;
+    }
+}
+
+h1, h2, h3 {
+    color: rgba(255, 217, 0, 0.9);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 32px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    text-indent: 20px;
+}
+
+h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+img {
+    width: 120px;
+}
+
+p {
+    color: rgba(255, 217, 0, 0.9);
+}
+
+.col-md-9 p {
+    text-align: justify;
+}
+
+.col-md-3 p {
+    text-align: center;
+}
+
