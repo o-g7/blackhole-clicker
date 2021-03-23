@@ -2,7 +2,8 @@ let sequencias = {
     rpg : 'r p g',
     zelda : 'z e l d a',
     poze : 'p o z e',
-    dica: 'd i c a'
+    dica: 'd i c a',
+    X:'x'
 }
 
 
@@ -10,7 +11,7 @@ cheet(sequencias.rpg)
 cheet(sequencias.zelda)
 cheet(sequencias.poze)
 cheet(sequencias.dica)
-
+cheet(sequencias.X)
 
 cheet.done(function (seq){
     if(seq === sequencias.rpg){
@@ -33,6 +34,9 @@ cheet.done(function (seq){
         $('#vitor-image').attr('src','imgs/kuro.png')
         $('#vitor-name').html('Kuro')
         $('#vitor-text').html('Sou Kuro, a Sombra do Oriente, vim da tribo dos Black Wings, os fenômenos da natureza encarnados em pássaros negros. Represento o anoitecer do mundo e sou um mestre em luta no estilo oriental, e domino principalmente com katanas. Luto para defender minha tribo e a honra dela e não exito <del> em acabar com quem tente atacá-los.</del>')
+        $('#coutinho-image').attr('src','imgs/irish.png')
+        $('#coutinho-name').html('Irish Warhammer')
+        $('#coutinho-text').html('Dotado de um olhar muito atraente (um olho atrai o outro), Irish Warhammer - também conhecido como Mestre Anão - habita a hoje pacata RockField e, após seus grandes feitos no campo de batalha que resultaram na liberação de todo o Reino de Utan, hoje prefere se enclausurar em sua taverna onde produz suas receitas secretas do bom hidromel.')
     }
     else if(seq === sequencias.zelda){
         let audio = new Audio('audio/zeldinha.mp3')
@@ -48,6 +52,9 @@ cheet.done(function (seq){
         $('#vitor-name').html('Link')
         $('#vitor-text').html('É perigoso ir sozinho, pegue isso aqui!')
         $('#vitor-image').attr('src','imgs/awakening.png')
+        $('#coutinho-image').attr('src','imgs/cout.jpg')
+        $('#coutinho-name').html('Coutinho')
+        $('#coutinho-text').html('Esse aqui em cima é o Grande Coutinho, nosso mestre. As sugestões e ensinamentos dele colaborou no nosso avanço no conhecimento da arte de programar em web.')
         audio.addEventListener('canplaythrough',() => {
             audio.play()
         })
@@ -56,8 +63,19 @@ cheet.done(function (seq){
         location.href = "https://www.youtube.com/watch?v=Dr07OyheOjc&list=PLaA1VDT4XMieAw5i0gJnESyVwZBWdz7Ba"
     }
     else if(seq === sequencias.dica){
+        $('#zimas-name').html('Enzo')
         $('#zimas-text').html('Digite a sigla de "Jogo de Interpretação de Mesa".')
+        $('#guima-name').html('Gabriel Guimarães')
         $('#guima-text').html('Digite o nome da franquia de aventura mais famosa da Nintendo.')
+        $('#tzim-name').html('Matheus')
         $('#tzim-text').html('Digite o nome pitbull do funk.')
+        $('#vitor-name').html('Vitor')
+        $('#vitor-text').html('Digite X')
+        $('#coutinho-image').attr('src','imgs/cout.jpg')
+        $('#coutinho-name').html('Coutinho')
+        $('#coutinho-text').html('Esse aqui em cima é o Grande Coutinho, nosso mestre. As sugestões e ensinamentos dele colaborou no nosso avanço no conhecimento da arte de programar em web.')
+    }
+    else if(seq === sequencias.X){
+        location.href = "https://youtu.be/JgJSHGVWflc"
     }
 })
