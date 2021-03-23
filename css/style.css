@@ -19,7 +19,7 @@ body {
 @keyframes orbita {
     from {
         background-position: 0 5px, 30px 5px, 130px 285px, 70px 165px;
-    }
+    e}
     
     to {
         background-position: -650px 5px, -350px 5px, -250px 285px, -220px 165px;
@@ -48,6 +48,7 @@ h1{
     height: 100%;
     overflow-y: scroll;
     width: 300px;
+    display: table;
 }
 
 
@@ -296,9 +297,17 @@ h1{
 }
 
 #direita p {
-    text-align: center;
     color: rgba(252, 225, 73, 0.9);
     letter-spacing: 1px;
+    font-size: 24px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    background-image: linear-gradient(to bottom right, rgba(255, 0, 0, 0.2), rgba(252, 225, 73, 0.2));
+    padding: 2px 4px;
+    border-radius: 4px;
+    transform: skewX(-10deg);
 }
 
 video {

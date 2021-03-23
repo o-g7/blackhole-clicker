@@ -1,5 +1,6 @@
 let sequencias = {
-    rpg : 'r p g'
+    rpg : 'r p g',
+    zelda : 'l o s t'
 }
 
 cheet(sequencias.rpg)
@@ -18,5 +19,11 @@ cheet.done(function (seq){
         $('#vitor-image').attr('src','imgs/kuro.png')
         $('#vitor-name').html('Kuro')
         $('#vitor-text').html('Sou Kuro, a Sombra do Oriente, vim da tribo dos Black Wings, os fenômenos da natureza encarnados em pássaros negros. Represento o anoitecer do mundo e sou um mestre em luta no estilo oriental, e domino principalmente com katanas. Luto para defender minha tribo e a honra dela e não exito <del> em acabar com quem tente atacá-los.</del>')
+    }
+    else if(seq === sequencias.zelda){
+        let audio = new Audio('audio/zeldinha.mp3')
+        audio.addEventListener('canplaythrough',() => {
+            audio.play()
+        })
     }
 })

@@ -57,7 +57,7 @@ export let aumentoMassa = 1
 imagens.meteoro.src = "imgs/Meteoro_1_16.png"
 imagens.lua.src = "imgs/LUA_1_32.png"
 imagens.anao.src = "imgs/LUA_2_128.png"
-imagens.planeta.src = "imgs/LUA_2_128.png"
+imagens.planeta.src = "imgs/Planeta.png"
 imagens.estrela.src = "imgs/LUA_2_128.png"
 
 export let botoesEl = document.querySelectorAll('.comprar')
