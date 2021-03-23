@@ -1,6 +1,7 @@
 /* Background com Estrelas em Movimento Créditos - https://www.inwebson.com/css3/css3-background-animations/ */
 
 body {
+    font-family: monospace;
     user-select: none;
     overflow: hidden;
     margin: 0;
@@ -19,7 +20,7 @@ body {
 @keyframes orbita {
     from {
         background-position: 0 5px, 30px 5px, 130px 285px, 70px 165px;
-    e}
+    }
     
     to {
         background-position: -650px 5px, -350px 5px, -250px 285px, -220px 165px;
@@ -46,9 +47,7 @@ h1{
     top: 0px;
     right: 0px;
     height: 100%;
-    overflow-y: scroll;
     width: 300px;
-    display: table;
 }
 
 
@@ -299,10 +298,9 @@ h1{
 #direita p {
     color: rgba(252, 225, 73, 0.9);
     letter-spacing: 1px;
-    font-size: 24px;
-    display: table-cell;
+    bottom: 50%;
+    right: 15%;
     text-align: center;
-    vertical-align: middle;
     position: absolute;
     background-image: linear-gradient(to bottom right, rgba(255, 0, 0, 0.2), rgba(252, 225, 73, 0.2));
     padding: 2px 4px;

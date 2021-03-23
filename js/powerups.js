@@ -9,27 +9,40 @@ import {buracoNegroEl} from "./canvas.js"
 import {ALTURA_CANVAS} from "./canvas.js"
 import {LARGURA_CANVAS} from "./canvas.js"
 
-export function restauracao(){
-    botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${estadoDoJogo.meteoro.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.meteoro.preco}</p>`
-    botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${estadoDoJogo.antiMateria.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.antiMateria.preco}</p>`
-    botoesEl[2].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Lua: ${estadoDoJogo.lua.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.lua.preco}</p>`
-    botoesEl[3].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Anão: ${estadoDoJogo.anao.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.anao.preco}</p>`
-    botoesEl[4].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Planeta: ${estadoDoJogo.planeta.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.planeta.preco}</p>`
-    botoesEl[5].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Estrela: ${estadoDoJogo.estrela.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.estrela.preco}</p>`
+let primeiroPush = {
+    meteoro: false,
+    lua: false,
+    anao: false,
+    planeta: false,
+    estrela: false
+}
 
-    if(estadoDoJogo.meteoro.existencia) {
+export function restauracao(){
+    botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${estadoDoJogo.meteoro.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.meteoro.preco.toLocaleString()}</p>`
+    botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${estadoDoJogo.antiMateria.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.antiMateria.preco.toLocaleString()}</p>`
+    botoesEl[2].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Lua: ${estadoDoJogo.lua.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.lua.preco.toLocaleString()}</p>`
+    botoesEl[3].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Anão: ${estadoDoJogo.anao.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.anao.preco.toLocaleString()}</p>`
+    botoesEl[4].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Planeta: ${estadoDoJogo.planeta.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.planeta.preco.toLocaleString()}</p>`
+    botoesEl[5].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Estrela: ${estadoDoJogo.estrela.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.estrela.preco.toLocaleString()}</p>`
+
+    if(estadoDoJogo.meteoro.existencia && !primeiroPush.meteoro) {
+        primeiroPush.meteoro = true
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.1, ALTURA_CANVAS * -0.1),16,16,imagens.meteoro,new Vetor(1,4),buracoNegroEl))
     }
-    if(estadoDoJogo.lua.existencia) {
+    if(estadoDoJogo.lua.existencia && !primeiroPush.lua) {
+        primeiroPush.lua = true
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * -0.9, ALTURA_CANVAS * -0.9),32,32,imagens.lua,new Vetor(4,6),buracoNegroEl))
     }
-    if(estadoDoJogo.anao.existencia) {
+    if(estadoDoJogo.anao.existencia && !primeiroPush.anao) {
+        primeiroPush.anao = true
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS ),48,48,imagens.anao,new Vetor(0,10),buracoNegroEl))
     }
-    if(estadoDoJogo.planeta.existencia) {
+    if(estadoDoJogo.planeta.existencia && !primeiroPush.planeta) {
+        primeiroPush.planeta = true
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS , ALTURA_CANVAS * -0.9),64,64,imagens.planeta,new Vetor(0,17.5),buracoNegroEl))
     }
-    if(estadoDoJogo.estrela.existencia) {
+    if(estadoDoJogo.estrela.existencia && !primeiroPush.estrela) {
+        primeiroPush.estrela = true
         corposCelestes.push(new CorpoCeleste(new Vetor(LARGURA_CANVAS * 1.7, ALTURA_CANVAS * -1.7),128,128,imagens.estrela,new Vetor(0,17.5),buracoNegroEl))
     }
 }

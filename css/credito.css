@@ -27,12 +27,10 @@ body {
 
 h1, h2, h3 {
     color: rgba(255, 217, 0, 0.9);
-    margin-bottom: 15px;
 }
 
 h1 {
     font-size: 32px;
-    text-align: center;
 }
 
 h2 {
@@ -42,7 +40,6 @@ h2 {
 
 h3 {
     font-size: 20px;
-    text-align: center;
 }
 
 img {
@@ -54,10 +51,6 @@ p {
 }
 
 .col-md-9 p {
+    text-indent: 25px;
     text-align: justify;
 }
-
-.col-md-3 p {
-    text-align: center;
-}
-
