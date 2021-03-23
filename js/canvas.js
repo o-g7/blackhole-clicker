@@ -137,6 +137,9 @@ async function horaDaMorte(){
         desenhaCanvas() 
     }
 
+    document.querySelector('body').style.backgroundImage = 'none'
+    document.querySelector('body').style.animationName = 'none'
+
     await espera(2000)
     ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)
 
