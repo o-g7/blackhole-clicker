@@ -45,7 +45,7 @@ buracoNegroImg.imagem0.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click += estadoDoJogo.valorClick
+            estadoDoJogo.click += 100000
         }
     }
     atualizaClick()

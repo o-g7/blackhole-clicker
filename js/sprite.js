@@ -13,12 +13,15 @@ export class Sprite {
         ctx.drawImage(this.imagem, this.posicao.x, this.posicao.y, this.largura, this.altura)
     }
 
-    
     get centro(){
         return {
             x: this.posicao.x + this.largura / 2,
             y: this.posicao.y + this.altura / 2
         }
+    }
+
+    get radiano(){
+        return (this.angulo * 3.14) / 180
     }
 
     horizonteEventos(outraSprite) {
@@ -33,9 +36,21 @@ export class Sprite {
 }
 
 export class BuracoNegro extends Sprite{
-    constructor(posicao,largura,altura,imagem,massa=1){
+    constructor(posicao,largura,altura,imagem,massa=1,angulo=0){
         super(posicao,largura,altura,imagem)
         this.massa = massa
+        this.angulo = angulo
+    }
+
+    desenhando(ctx) {
+        if (this.imagem) {
+            ctx.save()
+            ctx.translate(this.posicao.x,this.posicao.y)
+            ctx.translate(this.largura/2,this.altura/2)
+            ctx.rotate(this.radiano)
+            ctx.drawImage(this.imagem, -this.largura/2, -this.altura/2, this.largura, this.altura)
+            ctx.restore()
+        }
     }
 
     atualizandoBuracoNegro(novaMassa){
@@ -43,6 +58,10 @@ export class BuracoNegro extends Sprite{
             this.massa = novaMassa
             this.largura += novaMassa*10
             this.altura += novaMassa*10
+        }
+        this.angulo += 1
+        if(this.angulo>=360){
+            this.angulo -= 360
         }
     }
 
