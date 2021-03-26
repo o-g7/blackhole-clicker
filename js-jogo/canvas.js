@@ -35,7 +35,7 @@ buracoNegroImg.imagem5.src = "imgs/Whitehole_sprite_5.png"
 buracoNegroImg.imagem6.src = "imgs/Whitehole_sprite.png"
 export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg.imagem0,aumentoMassa)
 
-
+let antiMateria = document.querySelector('#anti')
 
 buracoNegroImg.imagem0.addEventListener('load',()=>{
     desenhaCanvas()
@@ -45,10 +45,26 @@ buracoNegroImg.imagem0.addEventListener('load',()=>{
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click += 100000
+            estadoDoJogo.click += estadoDoJogo.valorClick
+            
         }
     }
     atualizaClick()
+})
+
+canvas.addEventListener('mousemove',(e)=>{
+    if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
+        if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
+            if(estadoDoJogo.antiMateria.existencia) {
+                antiMateria.style.display = 'block'
+                antiMateria.style.left = `${e.pageX-20}px`
+                antiMateria.style.top = `${e.pageY-20}px`
+            }
+        }
+    }
+    else{
+        antiMateria.style.display = 'none'
+    }
 })
 
 function desenhaCanvas(){

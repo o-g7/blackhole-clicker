@@ -68,6 +68,9 @@ botoesEl[0].addEventListener('click', () => {
 
 botoesEl[1].addEventListener('click',() => {
     if(estadoDoJogo.click>=estadoDoJogo.antiMateria.preco){
+        if(!estadoDoJogo.antiMateria.existencia){
+            estadoDoJogo.antiMateria.existencia = true
+        }
         estadoDoJogo.antiMateria.nivel += 1
         estadoDoJogo.valorClick = estadoDoJogo.antiMateria.nivel * 2
         estadoDoJogo.click =estadoDoJogo.click - estadoDoJogo.antiMateria.preco

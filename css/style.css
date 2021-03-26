@@ -271,6 +271,11 @@ h1{
     display: block;
 }
 
+#anti {
+    position: absolute;
+    width: 20px;
+}
+
 #click {
     margin-left: auto;
     margin-right: auto;
