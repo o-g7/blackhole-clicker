@@ -17,6 +17,8 @@ export const LARGURA_CANVAS = canvas.width = window.innerWidth
 let ctx = canvas.getContext('2d')
 let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)
 let intro = true
+let video = document.querySelector('video')
+let antiMateria = document.querySelector('#anti')
 
 let buracoNegroImg = {
     imagem0 : new Image,
@@ -36,12 +38,11 @@ buracoNegroImg.imagem5.src = "imgs/Whitehole_sprite_5.png"
 buracoNegroImg.imagem6.src = "imgs/Whitehole_sprite.png"
 export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg.imagem0,aumentoMassa)
 
-let antiMateria = document.querySelector('#anti')
-
-buracoNegroImg.imagem0.addEventListener('load',()=>{
-    desenhaCanvas()
+video.addEventListener('load',()=>{
+    buracoNegroImg.imagem0.addEventListener('load',()=>{
+        desenhaCanvas()
+    })
 })
-
 
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
@@ -173,7 +174,6 @@ async function horaDaMorte(){
     canvas.style.display = 'none'
     await espera(1000)
     
-    let video = document.querySelector('video')
     video.style.display = 'block'
     video.style.zIndex = '3'
 

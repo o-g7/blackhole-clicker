@@ -22,6 +22,8 @@ cheet(sequencias.X)
 cheet.done(async function (seq){
     if(seq === sequencias.rpg){
         $('#loading').css('display','block')
+        $('body').css('height','100vw')
+        $('body').css('overflow','hidden')
         $('#zimas-image').attr('src','imgs/akino.png')
         $('#zimas-name').html('Akino')
         $('#zimas-text').html('Prazer! Me chamo Akino e sou seguidor do Fogo Eterno do Deus Jabiroca. Como Paladino tenho o objetivo de exterminar todo o mal a qualquer custo. Sobre minha aparência, sou um Tiefling azul e por isso tenho esses belos chifres e asas que não aparecem na imagem. Está interessado em ouvir as palavras de Jabiroca?')
@@ -39,10 +41,14 @@ cheet.done(async function (seq){
         $('#coutinho-text').html('Dotado de um olhar muito atraente (um olho atrai o outro), Irish Warhammer - também conhecido como Mestre Anão - habita a hoje pacata RockField e, após seus grandes feitos no campo de batalha que resultaram na liberação de todo o Reino de Utan, hoje prefere se enclausurar em sua taverna onde produz suas receitas secretas do bom hidromel.')
         await espera(2000) 
         $('#loading').css('display','none')
+        $('body').css('height','auto')
+        $('body').css('overflow','auto')
     }
     else if(seq === sequencias.zelda){
         let audio = new Audio('audio/zeldinha.mp3')
         $('#loading').css('display','block')
+        $('body').css('height','100vw')
+        $('body').css('overflow','hidden')
         $('#guima-name').html('Link')
         $('#guima-text').html('HEY!HEEEEEAT!HEYYA!')
         $('#guima-image').attr('src','imgs/majora.png')
@@ -63,12 +69,16 @@ cheet.done(async function (seq){
         })
         await espera(2000) 
         $('#loading').css('display','none')
+        $('body').css('height','auto')
+        $('body').css('overflow','auto')
     }
     else if(seq === sequencias.poze){
         location.href = "https://www.youtube.com/watch?v=Dr07OyheOjc&list=PLaA1VDT4XMieAw5i0gJnESyVwZBWdz7Ba"
     }
     else if(seq === sequencias.dica){
         $('#loading').css('display','block')
+        $('body').css('height','100vw')
+        $('body').css('overflow','hidden')
         $('#zimas-image').attr('src','imgs/enzimas.png')
         $('#zimas-name').html('Enzo')
         $('#zimas-text').html('Digite a sigla de "Jogo de Interpretação de Mesa".')
@@ -86,6 +96,8 @@ cheet.done(async function (seq){
         $('#coutinho-text').html('Esse aqui em cima é o Grande Coutinho, nosso mestre. As sugestões e ensinamentos dele colaborou no nosso avanço no conhecimento da arte de programar em web.')
         await espera(2000) 
         $('#loading').css('display','none')
+        $('body').css('height','auto')
+        $('body').css('overflow','auto')
     }
     else if(seq === sequencias.X){
         location.href = "https://youtu.be/JgJSHGVWflc"
