@@ -23,10 +23,10 @@ export function restauracao(){
     // mude os valores dos botoes
     botoesEl[0].innerHTML = `<div></div><p>Poder do Meteoro: ${estadoDoJogo.meteoro.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.meteoro.preco.toLocaleString()}</p>`
     botoesEl[1].innerHTML = `<div></div><p>Condensador de Antimatéria: ${estadoDoJogo.antiMateria.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.antiMateria.preco.toLocaleString()}</p>`
-    botoesEl[2].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Lua: ${estadoDoJogo.lua.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.lua.preco.toLocaleString()}</p>`
-    botoesEl[3].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Anão: ${estadoDoJogo.anao.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.anao.preco.toLocaleString()}</p>`
-    botoesEl[4].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Planeta: ${estadoDoJogo.planeta.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.planeta.preco.toLocaleString()}</p>`
-    botoesEl[5].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Estrela: ${estadoDoJogo.estrela.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.estrela.preco.toLocaleString()}</p>`
+    botoesEl[2].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Lunar: ${estadoDoJogo.lua.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.lua.preco.toLocaleString()}</p>`
+    botoesEl[3].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder do Planeta Anão: ${estadoDoJogo.anao.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.anao.preco.toLocaleString()}</p>`
+    botoesEl[4].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Planetar: ${estadoDoJogo.planeta.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.planeta.preco.toLocaleString()}</p>`
+    botoesEl[5].innerHTML = `<div><p>--EM CONSTRUÇÃO--</p></div><p>Poder Estrelar: ${estadoDoJogo.estrela.nivel}</p><p id="Valor">Valor: ${estadoDoJogo.estrela.preco.toLocaleString()}</p>`
     
     // insere as imagens no canvas caso precisam existir e ainda n foi inserido
     if(estadoDoJogo.meteoro.existencia && !primeiroPush.meteoro) {
