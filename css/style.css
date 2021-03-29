@@ -52,7 +52,7 @@ h1{
 
 
 .comprar {
-    animation: terminandoConstrucao 10s ease-out;
+    animation: terminandoConstrucao 1s ease-out;
     width: 250px;
     height: 64px;
     margin-bottom: 2px;
@@ -80,7 +80,7 @@ h1{
 }
 
 #bigbang {
-    animation: terminandoBigBang 10s ease-out;
+    animation: terminandoBigBang 1s ease-out;
     margin-top: 15px;
     animation: none;
     border: 2px solid rgba(255, 70, 0, 0.9);

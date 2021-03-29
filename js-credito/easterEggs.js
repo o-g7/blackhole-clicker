@@ -13,6 +13,7 @@ let sequencias = {
 }
 
 $('#loading').css('display','none')
+$('#leaderboard').css('height',`${$('.col-md-9').height()}px`)
 cheet(sequencias.rpg)
 cheet(sequencias.zelda)
 cheet(sequencias.poze)
@@ -66,6 +67,7 @@ cheet.done(async function (seq){
         $('#coutinho-text').html('Esse aqui em cima é o Grande Coutinho, nosso mestre. As sugestões e ensinamentos dele colaborou no nosso avanço no conhecimento da arte de programar em web.')
         audio.addEventListener('canplaythrough',() => {
             audio.play()
+            audio.volume = 0.5
         })
         await espera(2000) 
         $('#loading').css('display','none')

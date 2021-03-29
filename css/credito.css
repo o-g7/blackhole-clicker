@@ -73,3 +73,7 @@ p {
         top: 0;
     }
 }
+
+#leaderboard {
+    overflow-y: scroll;
+}

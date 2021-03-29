@@ -137,8 +137,8 @@ async function horaDaMorte(){
 
     desenhaCanvas()
     atualizaClick()
-    clearInterval(Intervalo)
-    /* localStorage.clear() */
+    clearInterval(Intervalo),
+    localStorage.clear()
 
     document.querySelector('#massa').innerHTML = 'undefined'
     document.querySelector('h1').innerHTML = 'ERROR'
@@ -146,6 +146,7 @@ async function horaDaMorte(){
     let audio = new Audio('audio/Alerta.mp3')
     audio.addEventListener('canplaythrough',() => {
         audio.play()
+        audio.volume = 0.2
     })
 
     for (let numeroBotao = 0; numeroBotao < botoesEl.length; numeroBotao++) {
@@ -179,7 +180,7 @@ async function horaDaMorte(){
 
     video.play()
     await espera(33000)
-    let nomeUsuario = window.prompt('Qual o seu nome?','undefined')
+    let nomeUsuario = window.prompt('Qual o seu nome?', '')
     let informacoes = { nomeUsuario, tempoTotal }
     fetch('https://backend-blackhole-clicker.herokuapp.com/leaderboard', {
         body: JSON.stringify(informacoes),
