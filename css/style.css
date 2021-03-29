@@ -303,21 +303,6 @@ h1{
     color: red;
 }
 
-.login img{
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    height: 40px;
-    width: 40px;
-    opacity: 0.5;
-    transition: all 0.1s ease;
-}
-
-.login img:hover{
-    opacity: 0.7;
-    cursor: pointer;
-}
-
 #direita p {
     color: rgba(252, 225, 73, 0.9);
     letter-spacing: 1px;
@@ -335,4 +320,10 @@ video {
     display: none;
     width: 100%;
     height: 100%;
+}
+
+@media screen and (max-height: 498px) {
+	body {
+		overflow-y: visible;
+	}
 }
