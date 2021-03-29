@@ -184,7 +184,7 @@ async function horaDaMorte(){
     fetch('https://backend-blackhole-clicker.herokuapp.com/leaderboard', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'text/plain'
         },
         body: JSON.stringify(informacoes)
     })
