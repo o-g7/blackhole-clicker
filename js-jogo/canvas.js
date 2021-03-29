@@ -150,17 +150,17 @@ async function horaDaMorte(){
 
     for (let numeroBotao = 0; numeroBotao < botoesEl.length; numeroBotao++) {
         botoesEl[numeroBotao].innerHTML = `<div></div><p>ERROR: undefined</p><p id="Valor">ERROR: undefined</p>`
-        await espera(1000)
+        await espera(1000) 
         botoesEl[numeroBotao].classList.add('desligado')
     }
 
-    await espera(1000)
+    await espera(1000) 
     document.querySelector('#esquerda').style.display = 'none'
     document.querySelector('#direita').style.display = 'none'
     
     for (let numeroBuraco = 1; numeroBuraco <7 ; numeroBuraco++) {
         let imagem = `imagem${numeroBuraco}`
-        await espera(1000)
+        await espera(1000) 
         buracoNegroEl.desatualizaBuracoNegro(25, buracoNegroImg[imagem])
         desenhaCanvas() 
     }
@@ -168,7 +168,7 @@ async function horaDaMorte(){
     document.querySelector('body').style.backgroundImage = 'none'
     document.querySelector('body').style.animationName = 'none'
 
-    await espera(2000)
+    await espera(2000) 
     ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)
 
     canvas.style.display = 'none'
@@ -182,14 +182,13 @@ async function horaDaMorte(){
     let nomeUsuario = window.prompt('Qual o seu nome?','undefined')
     let informacoes = { nomeUsuario, tempoTotal }
     fetch('https://backend-blackhole-clicker.herokuapp.com/leaderboard', {
-        method: 'POST',
+        body: JSON.stringify(informacoes),
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(informacoes)
+        method: 'POST'
     })
-
-    location.href = 'credito.html'
+    .then(() => location.href = 'credito.html')
 }
 
 function ojogo(){
