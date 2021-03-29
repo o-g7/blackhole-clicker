@@ -16,6 +16,7 @@ export const LARGURA_CANVAS = canvas.width = window.innerWidth
 
 let ctx = canvas.getContext('2d')
 let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)
+let intro = true
 
 let buracoNegroImg = {
     imagem0 : new Image,
@@ -66,6 +67,13 @@ canvas.addEventListener('mousemove',(e)=>{
         antiMateria.style.display = 'none'
     }
 })
+
+async function introAparecer(){
+    let introEl = document.querySelector('#intro')
+    await espera(5000)
+    introEl.style.display = 'none'
+    intro = false
+}
 
 function desenhaCanvas(){
     ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)
@@ -122,11 +130,14 @@ function espera(tempo){
 }  
 
 async function horaDaMorte(){
+    let tempoFinal = Date.now()
+    let tempoTotal = (tempoFinal - estadoDoJogo.tempo)/60000
     corposCelestes.splice(0,corposCelestes.length)
 
     desenhaCanvas()
     atualizaClick()
     clearInterval(Intervalo)
+    /* localStorage.clear() */
 
     document.querySelector('#massa').innerHTML = 'undefined'
     document.querySelector('h1').innerHTML = 'ERROR'
@@ -169,15 +180,29 @@ async function horaDaMorte(){
     video.play()
     await espera(33000)
     let nomeUsuario = window.prompt('Qual o seu nome?','undefined')
+    let informacoes = { nomeUsuario, tempoTotal }
+    fetch('https://backend-blackhole-clicker.herokuapp.com/leaderboard', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(informacoes)
+    })
+
     location.href = 'credito.html'
 }
 
 function ojogo(){
-    desenhaCanvas()
-    atualizaJogo()
-    engoleCorpos()
-    if(estadoDoJogo.bigBang.chegouHora === true){
-        horaDaMorte()
+    if(intro){
+        introAparecer()
+    }
+    else{
+        desenhaCanvas()
+        atualizaJogo()
+        engoleCorpos()
+        if(estadoDoJogo.bigBang.chegouHora === true){
+            horaDaMorte()
+        }
     }
 }
 

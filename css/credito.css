@@ -54,3 +54,7 @@ p {
     text-indent: 25px;
     text-align: justify;
 }
+
+#loading {
+    top: auto;
+}

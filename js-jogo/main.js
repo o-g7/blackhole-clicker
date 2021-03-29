@@ -3,7 +3,6 @@ import { atualizaContador, estadoDoJogo, upgradeBuracoNegro } from "./estadoDoJo
 import "./powerups.js"
 import {botoesEl} from "./estadoDoJogo.js"
 import {restauracao} from "./powerups.js"
-
 const estadoRecuperado = {
     estadoFinal: JSON.parse(localStorage.getItem('estadoFinal'))
 }
@@ -17,6 +16,7 @@ if (estadoRecuperado.estadoFinal){
     estadoDoJogo.anao = estadoRecuperado.estadoFinal.anao
     estadoDoJogo.planeta = estadoRecuperado.estadoFinal.planeta
     estadoDoJogo.estrela = estadoRecuperado.estadoFinal.estrela
+    estadoDoJogo.tempo = estadoRecuperado.estadoFinal.tempo
     restauracao()
     upgradeBuracoNegro()
     atualizaContador()

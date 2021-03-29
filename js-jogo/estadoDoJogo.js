@@ -2,11 +2,11 @@ import Vetor from "./vetor.js"
 import {BuracoNegro} from "./sprite.js"
 import {CorpoCeleste} from "./sprite.js"
 import {buracoNegroEl} from "./canvas.js"
-
 export let corposCelestes = []
 export let estadoDoJogo = {
     click: 0,
     valorClick: 1,
+    tempo: Date.now(),
     meteoro: {
         preco: 10,
         nivel: 0,
@@ -42,7 +42,6 @@ export let estadoDoJogo = {
         chegouHora: false
     }
 }
-
 export let imagens = {
     meteoro: new Image,
     lua: new Image,
@@ -108,5 +107,5 @@ export let atualizaContador = () => {
 }
  
 const salvarLocalmente = () => {
-    localStorage.setItem('estadoFinal', JSON.stringify(estadoDoJogo))
+    localStorage.setItem('estadoFinal', JSON.stringify(estadoDoJogo)) 
 }
