@@ -42,6 +42,7 @@ cheet.done(async function (seq){
     }
     else if(seq === sequencias.zelda){
         let audio = new Audio('audio/zeldinha.mp3')
+        $('#loading').css('display','block')
         $('#guima-name').html('Link')
         $('#guima-text').html('HEY!HEEEEEAT!HEYYA!')
         $('#guima-image').attr('src','imgs/majora.png')
@@ -60,11 +61,14 @@ cheet.done(async function (seq){
         audio.addEventListener('canplaythrough',() => {
             audio.play()
         })
+        await espera(2000) 
+        $('#loading').css('display','none')
     }
     else if(seq === sequencias.poze){
         location.href = "https://www.youtube.com/watch?v=Dr07OyheOjc&list=PLaA1VDT4XMieAw5i0gJnESyVwZBWdz7Ba"
     }
     else if(seq === sequencias.dica){
+        $('#loading').css('display','block')
         $('#zimas-image').attr('src','imgs/enzimas.png')
         $('#zimas-name').html('Enzo')
         $('#zimas-text').html('Digite a sigla de "Jogo de Interpretação de Mesa".')
@@ -80,6 +84,8 @@ cheet.done(async function (seq){
         $('#coutinho-image').attr('src','imgs/cout.jpg')
         $('#coutinho-name').html('Coutinho')
         $('#coutinho-text').html('Esse aqui em cima é o Grande Coutinho, nosso mestre. As sugestões e ensinamentos dele colaborou no nosso avanço no conhecimento da arte de programar em web.')
+        await espera(2000) 
+        $('#loading').css('display','none')
     }
     else if(seq === sequencias.X){
         location.href = "https://youtu.be/JgJSHGVWflc"

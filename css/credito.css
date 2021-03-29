@@ -56,5 +56,20 @@ p {
 }
 
 #loading {
+    animation: flutuando .5s ease-in-out 0s infinite alternate;
+    position: absolute;
+    width: 100%;
+    left: 0;
     top: auto;
+    z-index: 3;
+}
+
+@keyframes flutuando {
+    from {
+        top: -6px;
+    }
+
+    to {
+        top: 0;
+    }
 }

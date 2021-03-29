@@ -1,7 +1,7 @@
 fetch('https://backend-blackhole-clicker.herokuapp.com/leaderboard')
     .then(r => r.json())
     .then(r => {
-        r.resultados.sort((a, b) => (a.tempo < b.tempo) ? 1 : (a.tempo === b.tempo) ? ((a.nome > b.nome) ? 1 : -1) : -1 )
+        r.resultados.sort((a, b) => (a.tempo > b.tempo) ? 1 : -1 )
 
         let conteudoLeaderboard = r.resultados.map(item => `${item.nome} - ${item.tempo} minutos`)
 
