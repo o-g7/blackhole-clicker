@@ -154,7 +154,7 @@ async function horaDaMorte(){
         botoesEl[numeroBotao].classList.add('desligado')
     }
 
-    await espera(1000) 
+    await espera(1000)
     document.querySelector('#esquerda').style.display = 'none'
     document.querySelector('#direita').style.display = 'none'
     
