@@ -10,15 +10,15 @@ import {aumentoMassa} from "./estadoDoJogo.js"
 import {atualizaContador} from "./estadoDoJogo.js"
 
 
-let canvas = document.querySelector('#clicker')
-export const ALTURA_CANVAS = canvas.height = window.innerHeight
+let canvas = document.querySelector('#clicker')//Pega o canvas
+export const ALTURA_CANVAS = canvas.height = window.innerHeight//Defien a altura e largura do canvas dinamicamente
 export const LARGURA_CANVAS = canvas.width = window.innerWidth
 
-let ctx = canvas.getContext('2d')
-let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)
-let intro = true
-let video = document.querySelector('video')
-let antiMateria = document.querySelector('#anti')
+let ctx = canvas.getContext('2d')// Canvas 2d
+let pontoDeSuccao = new Vetor(LARGURA_CANVAS/2.1,ALTURA_CANVAS/2.8)//Campo gravitacional definição
+let intro = true//Carregar página
+let video = document.querySelector('video')//Video do final
+let antiMateria = document.querySelector('#anti')//Imagem do Condensador
 
 let buracoNegroImg = {
     imagem0 : new Image,
@@ -36,47 +36,47 @@ buracoNegroImg.imagem3.src = "imgs/Whitehole_sprite_3.png"
 buracoNegroImg.imagem4.src = "imgs/Whitehole_sprite_4.png"
 buracoNegroImg.imagem5.src = "imgs/Whitehole_sprite_5.png"
 buracoNegroImg.imagem6.src = "imgs/Whitehole_sprite.png"
-export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg.imagem0,aumentoMassa)
+export const buracoNegroEl = new BuracoNegro(pontoDeSuccao,127,127,buracoNegroImg.imagem0,aumentoMassa)//Buraco Negro
 
 video.addEventListener('load',()=>{
     buracoNegroImg.imagem0.addEventListener('load',()=>{
-        desenhaCanvas()
+        desenhaCanvas()//Para carregar as coisas principais
     })
 })
 
 canvas.addEventListener('click',(e)=>{
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
-            estadoDoJogo.click += estadoDoJogo.valorClick
+            estadoDoJogo.click += estadoDoJogo.valorClick//Click funcioando no exato sprite do buraco negro
             
         }
     }
-    atualizaClick()
+    atualizaClick()//atualiza as unidades de massa e mais (estadoDoJogo.js)
 })
 
-canvas.addEventListener('mousemove',(e)=>{
+canvas.addEventListener('mousemove',(e)=>{//Se estiver dentro do Buraco Negro e consensador comprado...
     if(e.pageX>=buracoNegroEl.posicao.x && e.pageX<=buracoNegroEl.posicao.x + buracoNegroEl.largura){
         if(e.pageY>=buracoNegroEl.posicao.y && e.pageY<=buracoNegroEl.posicao.y + buracoNegroEl.altura){
             if(estadoDoJogo.antiMateria.existencia) {
-                antiMateria.style.display = 'block'
+                antiMateria.style.display = 'block'//... o condesador aparece ...
                 antiMateria.style.left = `${e.pageX-20}px`
                 antiMateria.style.top = `${e.pageY-20}px`
             }
         }
     }
     else{
-        antiMateria.style.display = 'none'
+        antiMateria.style.display = 'none'//... ou não
     }
 })
 
-async function introAparecer(){
+async function introAparecer(){//Aparece a logo por 5 segundos
     let introEl = document.querySelector('#intro')
     await espera(5000)
     introEl.style.display = 'none'
     intro = false
 }
 
-function desenhaCanvas(){
+function desenhaCanvas(){//Movimenta sprites no jogo
     ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)
     buracoNegroEl.desenhando(ctx)
     for (let corpo of corposCelestes) {
@@ -84,14 +84,14 @@ function desenhaCanvas(){
     }
 }
 
-function atualizaJogo(){
+function atualizaJogo(){//Verifica tamanho e novos valores de movimento de todos
     buracoNegroEl.atualizandoBuracoNegro(aumentoMassa)
     for (let corpo of corposCelestes) {
         corpo.atualizaCorposCelestes()
     }
 }
 
-function engoleCorpos(){
+function engoleCorpos(){//Verifica colisões e ganha massa dependendo do corpo colidido
     for (let corpo of corposCelestes) {
         const atingiuBuracoNegro = corpo.horizonteEventos(buracoNegroEl)
         if (atingiuBuracoNegro) {
@@ -124,42 +124,43 @@ function engoleCorpos(){
     }
 }
 
-function espera(tempo){
+function espera(tempo){//Função para esperar um tempo
     return new Promise((resolve,reject)=>{
         setTimeout(()=>resolve(),tempo)
     })
 }  
 
-async function horaDaMorte(){
+async function horaDaMorte(){// Clicou no botão final
     let tempoFinal = Date.now()
-    let tempoTotal = (tempoFinal - estadoDoJogo.tempo)/60000
-    corposCelestes.splice(0,corposCelestes.length)
+    let tempoTotal = (tempoFinal - estadoDoJogo.tempo)/60000//Pega e calcula quanto tempo foi gasto na página
+    corposCelestes.splice(0,corposCelestes.length)//Mata os corpos celeste
 
     desenhaCanvas()
-    atualizaClick()
-    clearInterval(Intervalo),
-    localStorage.clear()
+    atualizaClick()//Altera o canvas e o click depois de ter tirado tudo
+    clearInterval(Intervalo)//Limpa o intervalo
+    localStorage.clear()//Deleta o save
 
-    document.querySelector('#massa').innerHTML = 'undefined'
+    document.querySelector('#massa').innerHTML = 'undefined'//Escreve indefined e ERROR nos botões
     document.querySelector('h1').innerHTML = 'ERROR'
 
     let audio = new Audio('audio/Alerta.mp3')
-    audio.addEventListener('canplaythrough',() => {
+    audio.addEventListener('canplaythrough',() => {//Toca o áudio no volume de 20% depois de verificar se pode tocar
         audio.play()
         audio.volume = 0.2
     })
 
-    for (let numeroBotao = 0; numeroBotao < botoesEl.length; numeroBotao++) {
+    for (let numeroBotao = 0; numeroBotao < botoesEl.length; numeroBotao++) {//Remove botão por botão com intervalo de 1 segundo
         botoesEl[numeroBotao].innerHTML = `<div></div><p>ERROR: undefined</p><p id="Valor">ERROR: undefined</p>`
         await espera(1000) 
         botoesEl[numeroBotao].classList.add('desligado')
     }
 
     await espera(1000)
+    //Some as escritas laterais
     document.querySelector('#esquerda').style.display = 'none'
     document.querySelector('#direita').style.display = 'none'
     
-    for (let numeroBuraco = 1; numeroBuraco <7 ; numeroBuraco++) {
+    for (let numeroBuraco = 1; numeroBuraco <7 ; numeroBuraco++) {//Muda imagem do buraco negro para buraco branco
         let imagem = `imagem${numeroBuraco}`
         await espera(1000) 
         buracoNegroEl.desatualizaBuracoNegro(25, buracoNegroImg[imagem])
@@ -170,33 +171,33 @@ async function horaDaMorte(){
     document.querySelector('body').style.animationName = 'none'
 
     await espera(2000) 
-    ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)
+    ctx.clearRect(0,0,LARGURA_CANVAS,ALTURA_CANVAS)//Deleta tudo
 
     canvas.style.display = 'none'
     await espera(1000)
     
-    video.style.display = 'block'
+    video.style.display = 'block'//vídeo aparece e toca
     video.style.zIndex = '3'
-
     video.play()
     await espera(33000)
-    let nomeUsuario = window.prompt('Qual o seu nome?', '')
-    let informacoes = { nomeUsuario, tempoTotal }
-    fetch('https://backend-blackhole-clicker.herokuapp.com/leaderboard', {
+
+    let nomeUsuario = window.prompt('Qual o seu nome?', '') //Pega nome do usuário
+    let informacoes = { nomeUsuario, tempoTotal } //Coloca as informações que vão pro Back-End em um objeto
+    fetch('https://backend-blackhole-clicker.herokuapp.com/leaderboard', { //Dá um fetch pra mandar as coisas pro Back-End
         body: JSON.stringify(informacoes),
         headers: {
             'Content-Type': 'application/json'
         },
         method: 'POST'
     })
-    .then(() => location.href = 'credito.html')
+    .then(() => location.href = 'credito.html') //Após mandar os dados para o Back-End, ele redireciona para a página de créditos.
 }
 
-function ojogo(){
-    if(intro){
+function ojogo(){//O jogo com todas suas funcionalidades sendo chamadas de 33 em 33 milesegundos
+    if(intro){//Aparece a intro quando entra...
         introAparecer()
     }
-    else{
+    else{//Depois o jogo funciona normalmente
         desenhaCanvas()
         atualizaJogo()
         engoleCorpos()

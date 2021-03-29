@@ -1,9 +1,11 @@
+// Função para esperar um determinado tempo
 function espera(tempo){
     return new Promise((resolve,reject)=>{
         setTimeout(()=>resolve(),tempo)
     })
 }  
 
+// Sequencias de letra para os easterEgg
 let sequencias = {
     rpg : 'r p g',
     zelda : 'z e l d a',
@@ -12,19 +14,30 @@ let sequencias = {
     X:'x'
 }
 
+// Tela de carregamento dos easterEgg inicialmente desabilitada
 $('#loading').css('display','none')
+
+// Tabela de Jogadores do mesmo tamanha que o texto de autores e coloboradores
 $('#leaderboard').css('height',`${$('.col-md-9').height()}px`)
+
+// Criando easterEgg pelas sequencias
 cheet(sequencias.rpg)
 cheet(sequencias.zelda)
 cheet(sequencias.poze)
 cheet(sequencias.dica)
 cheet(sequencias.X)
 
+// Verificar se as sequencias de teclas combinam com as sequencias requeridas
 cheet.done(async function (seq){
+
+    // Se teclar r p g
     if(seq === sequencias.rpg){
+        // Mostra tela de carregamento
         $('#loading').css('display','block')
+        // O site fica com a altura da tela de carregamento
         $('body').css('height','100vw')
         $('body').css('overflow','hidden')
+        // Muda as imagens e textos
         $('#zimas-image').attr('src','imgs/akino.png')
         $('#zimas-name').html('Akino')
         $('#zimas-text').html('Prazer! Me chamo Akino e sou seguidor do Fogo Eterno do Deus Jabiroca. Como Paladino tenho o objetivo de exterminar todo o mal a qualquer custo. Sobre minha aparência, sou um Tiefling azul e por isso tenho esses belos chifres e asas que não aparecem na imagem. Está interessado em ouvir as palavras de Jabiroca?')
@@ -40,16 +53,22 @@ cheet.done(async function (seq){
         $('#coutinho-image').attr('src','imgs/irish.png')
         $('#coutinho-name').html('Irish Warhammer')
         $('#coutinho-text').html('Dotado de um olhar muito atraente (um olho atrai o outro), Irish Warhammer - também conhecido como Mestre Anão - habita a hoje pacata RockField e, após seus grandes feitos no campo de batalha que resultaram na liberação de todo o Reino de Utan, hoje prefere se enclausurar em sua taverna onde produz suas receitas secretas do bom hidromel.')
+        // Espera 2 segundos
         await espera(2000) 
+        // Tira tela de carregamento
         $('#loading').css('display','none')
+        // O site fica com a altura automatica
         $('body').css('height','auto')
         $('body').css('overflow','auto')
-    }
+    } // se teclar z e l d a
     else if(seq === sequencias.zelda){
         let audio = new Audio('audio/zeldinha.mp3')
+        // Mostra tela de carregamento
         $('#loading').css('display','block')
+        // O site fica com a altura da tela de carregamento
         $('body').css('height','100vw')
         $('body').css('overflow','hidden')
+        // Muda as imagens e textos
         $('#guima-name').html('Link')
         $('#guima-text').html('HEY!HEEEEEAT!HEYYA!')
         $('#guima-image').attr('src','imgs/majora.png')
@@ -69,18 +88,25 @@ cheet.done(async function (seq){
             audio.play()
             audio.volume = 0.5
         })
+        // Espera 2 segundos
         await espera(2000) 
+        // Tira tela de carregamento
         $('#loading').css('display','none')
+        // O site fica com a altura automatica
         $('body').css('height','auto')
         $('body').css('overflow','auto')
-    }
+    } // se teclar p o z e
     else if(seq === sequencias.poze){
-        location.href = "https://www.youtube.com/watch?v=Dr07OyheOjc&list=PLaA1VDT4XMieAw5i0gJnESyVwZBWdz7Ba"
-    }
+        // cria uma aba com um endereco
+        window.open('https://www.youtube.com/watch?v=Dr07OyheOjc&list=PLaA1VDT4XMieAw5i0gJnESyVwZBWdz7Ba', '_blank')
+    } // se teclar d i c a
     else if(seq === sequencias.dica){
+        // Mostra tela de carregamento
         $('#loading').css('display','block')
+        // O site fica com a altura da tela de carregamento
         $('body').css('height','100vw')
         $('body').css('overflow','hidden')
+        // Muda as imagens e textos
         $('#zimas-image').attr('src','imgs/enzimas.png')
         $('#zimas-name').html('Enzo')
         $('#zimas-text').html('Digite a sigla de "Jogo de Interpretação de Mesa".')
@@ -96,12 +122,16 @@ cheet.done(async function (seq){
         $('#coutinho-image').attr('src','imgs/cout.jpg')
         $('#coutinho-name').html('Coutinho')
         $('#coutinho-text').html('Esse aqui em cima é o Grande Coutinho, nosso mestre. As sugestões e ensinamentos dele colaborou no nosso avanço no conhecimento da arte de programar em web.')
+        // Espera 2 segundos
         await espera(2000) 
+        // Tira tela de carregamento
         $('#loading').css('display','none')
+        // O site fica com a altura automatica
         $('body').css('height','auto')
         $('body').css('overflow','auto')
-    }
+    } // se teclar x
     else if(seq === sequencias.X){
-        location.href = "https://youtu.be/JgJSHGVWflc"
+        // cria uma aba com um endereco
+        window.open('https://youtu.be/JgJSHGVWflc', '_blank')
     }
 })
