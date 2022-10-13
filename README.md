@@ -1,3 +1,2 @@
 # BlackHole Clicker
-Este é o mais novo clicker feito pelo grandíssimo G7, o maior grupo já visto em Web.
-Seja bem-vindo!
+Um jogo clicker feito pelo primeiro ano de informática de 2020 do cefet para a matéria de Web!
